@@ -12,23 +12,23 @@ class VkClient
   end
 
   def find_user(s)
-    app.users.get(user_ids: s)
+    @app.users.get(user_ids: s)
   end
 
   def find_groups(uid)
-    app.groups.get(user_id: uid)
+    @app.groups.get(user_id: uid)
   end
 
   def get_stats(gid)
-    app.stats.get(group_id: gid)
+    @app.stats.get(group_id: gid)
   end
 
   def get_posts(gid)
-    probe = app.wall.get(owner_id: "-#{gid}", filter: "owner")
+    probe = @app.wall.get(owner_id: "-#{gid}", filter: "owner")
     step = 100
     pages = probe['count'] / step
     (0...pages).reduce([]) do |acc, i|
-      resp = app.wall.get(owner_id: "-#{gid}", filter: "owner", offset: step * i, count: step)
+      resp = @app.wall.get(owner_id: "-#{gid}", filter: "owner", offset: step * i, count: step)
       acc + resp['items']
     end
   end
