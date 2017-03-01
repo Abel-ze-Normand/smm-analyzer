@@ -14,7 +14,7 @@ class VkClient
     @app.authorization_url(
       type: :site,
       app_id: @app_id,
-      redirect_url: "http://localhost:3000",
+      redirect_url: "http://localhost:3000/auth",
       settings: "wall,groups,stats",
       version: "5.26"
     )
