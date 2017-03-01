@@ -1,14 +1,33 @@
 class VkClient
-  attr_reader :app
+  attr_reader :app, :access_token
 
   def initialize
-    service_app = VK::Application.new
-    resp = service_app.server_auth(app_id: ENV['SMM_APP_ID'], app_secret: ENV['SMM_APP_SECRET'])
-    @app = VK::Application.new do |app|
-      app.app_id = ENV['SMM_APP_ID']
-      app.app_secret = ENV['SMM_APP_SECRET']
-      app.access_token = resp['access_token']
-    end
+    @app_id = 5901765
+    @app = VK::Application.new
+  end
+
+  def autorized?
+    @app.authorized?
+  end
+
+  def auth_url
+    @app.authorization_url(
+      type: :site,
+      app_id: @app_id,
+      redirect_url: "http://localhost:3000",
+      settings: "wall,groups,stats",
+      version: "5.26"
+    )
+  end
+
+  def authorize(options)
+    @access_token = options.fetch(:access_token)
+    @app = VK::Application.new(
+      app_id: @app_id,
+      access_token: @access_token,
+      settings: "wall, groups,stats",
+      version: "5.26"
+    )
   end
 
   def find_user(s)
@@ -16,18 +35,21 @@ class VkClient
   end
 
   def find_groups(uid)
-    @app.groups.get(user_id: uid)
+    @app.groups.get(user_id: uid, count: 1000, extended: 1)
   end
 
-  def get_stats(gid)
-    @app.stats.get(group_id: gid)
+  def get_stats(opts = {})
+    gid = opts.fetch(:gid)
+    date_from = opts.fetch(:date_from)
+    date_to = opts.fetch(:date_to)
+    @app.stats.get(group_id: gid, date_from: date_from, date_to: date_to)
   end
 
   def get_posts(gid)
     probe = @app.wall.get(owner_id: "-#{gid}", filter: "owner")
     step = 100
     pages = probe['count'] / step
-    (0...pages).reduce([]) do |acc, i|
+    (0..pages).reduce([]) do |acc, i|
       resp = @app.wall.get(owner_id: "-#{gid}", filter: "owner", offset: step * i, count: step)
       acc + resp['items']
     end
