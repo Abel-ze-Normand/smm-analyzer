@@ -32,13 +32,13 @@ module Vk
 
     def create_user
       user_data = @client.get_user(@user_id)
-      @user = User.new(id: user_data[:id], name: construct_name(user_data))
+      @user = User.new(id: user_data["id"], name: construct_name(user_data))
       @user.save!
       @user
     end
 
     def construct_name(user_data)
-      "#{user_data[:first_name]} #{user_data[:last_name]}"
+      "#{user_data['first_name']} #{user_data['last_name']}"
     end
   end
 end

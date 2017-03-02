@@ -35,7 +35,7 @@ class VkClient
   end
 
   def find_groups(uid)
-    @app.groups.get(user_id: uid, count: 1000, extended: 1)
+    @app.groups.get(user_id: uid, count: 1000, extended: 1, filter: "admin")
   end
 
   def get_stats(opts = {})
