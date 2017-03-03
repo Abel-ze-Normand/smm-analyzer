@@ -25,7 +25,7 @@ class VkClient
     @app = VK::Application.new(
       app_id: @app_id,
       access_token: @access_token,
-      settings: "wall, groups,stats",
+      settings: "wall,groups,stats",
       version: "5.62"
     )
   end
