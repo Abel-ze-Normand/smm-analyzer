@@ -14,6 +14,12 @@ class AuthController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def exit 
+    session[:user_id] = nil
+    session[:access_token] = nil
+    redirect_to login_path
+  end
+
   private
 
   def fixed_params
