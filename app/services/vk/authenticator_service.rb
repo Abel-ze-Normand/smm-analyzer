@@ -8,7 +8,7 @@ module Vk
 
     def call
       user = get_user()
-      return user, access_token
+      return user, @access_token
     end
 
     private
@@ -31,7 +31,7 @@ module Vk
     end
 
     def create_user
-      user_data = @client.get_user(@user_id)
+      user_data = @client.find_user(@user_id).first
       @user = User.new(id: user_data["id"], name: construct_name(user_data))
       @user.save!
       @user

@@ -16,7 +16,7 @@ class VkClient
       app_id: @app_id,
       redirect_url: "http://localhost:3000/auth",
       settings: "wall,groups,stats",
-      version: "5.26"
+      version: "5.62"
     )
   end
 
@@ -26,7 +26,7 @@ class VkClient
       app_id: @app_id,
       access_token: @access_token,
       settings: "wall, groups,stats",
-      version: "5.26"
+      version: "5.62"
     )
   end
 
@@ -39,10 +39,10 @@ class VkClient
   end
 
   def get_stats(opts = {})
-    gid = opts.fetch(:gid)
+    group_id = opts.fetch(:group_id)
     date_from = opts.fetch(:date_from)
     date_to = opts.fetch(:date_to)
-    @app.stats.get(group_id: gid, date_from: date_from, date_to: date_to)
+    @app.stats.get(group_id: group_id, date_from: date_from, date_to: date_to)
   end
 
   def get_posts(gid)

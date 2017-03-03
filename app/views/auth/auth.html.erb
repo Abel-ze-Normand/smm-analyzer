@@ -1,0 +1,8 @@
+<div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    var anc = window.location.hash.replace("#","?");
+    if (anc == "") {anc = "none"}
+    var def_url ="http://localhost:3000/fix_auth";
+    window.location.replace((def_url+anc));
+</script>
