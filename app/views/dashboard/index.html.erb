@@ -191,6 +191,7 @@
 <!-- D3 -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
+//@todo Сделать инициализацию 
 $(document).ready(function(){
 	var svg = d3.select(".statistic-demo"),
     margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -237,7 +238,4 @@ d3.tsv("data.tsv", function(d) {
       .attr("height", function(d) { return height - y(d.frequency); });
 });
 });
-
-
-	
 </script>
