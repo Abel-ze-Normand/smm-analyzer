@@ -1,19 +1,24 @@
 <ul class="nav nav-tabs" id="myGroups">
-	<% @users_added_group_list.each do |group, index| %>
-		<li role="presentation" >
+	<% @users_added_group_list.each.with_index do |group, index| %>
+		<li role="presentation" 
+			<% if index == 0 %>
+		      class="active" 
+		    <% end %>
+	    >
 			<a href="#group-tab-item-<%= group.id %>" 
 			   role="tab" 
 			   data-toggle="tab"
+			   index="<%= index %>"
 			   ><%= group.name %></a>
 		</li>
 	<% end %>
-  <li role="presentation" class="active" ><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
+  <li role="presentation"><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
 </ul>
 
 <!-- Tab panes -->
   <div class="tab-content tab-groups">
   	<!-- Tab add group -->
-  	<div role="tabpanel" class="tab-pane active" id="tab-add-group">
+  	<div role="tabpanel" class="tab-pane" id="tab-add-group">
   		<!-- @TODO добавить aciton-->
   		<form action="">
   			<span>Список групп пользователя</span>
@@ -34,8 +39,10 @@
     </div>
     <!-- / Tab add group -->
 
-    <% @users_added_group_list.each do |group| %>
-		<div role="tabpanel" class="tab-pane" id="group-tab-item-<%= group.id %>">
+    <% @users_added_group_list.each.with_index do |group, index| %>
+		<div role="tabpanel" 
+			 class="tab-pane <% if index == 0 %>active<% end %>" 
+			 id="group-tab-item-<%= group.id %>" >
 	    	<div class="row">
 	    		<div class="col-md-6 group-info">
 	    			Информация

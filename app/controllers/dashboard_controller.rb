@@ -11,7 +11,12 @@ class DashboardController < ApplicationController
   end
 
   def pick_groups
+    # @todo Перенести в правильное место 
+    @client = VkClient.new
+    group_info = @client.get_groups(141736779);
+    abort group_info.inspect
     Vk::StoreGroupsService.new(strong_groups_list_params).call
+    # @todo Вернуть json 
     redirect_to dashboard_path
   end
 
