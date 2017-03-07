@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/fix_auth", to: "auth#fix_auth", as: :fix_auth
   get "/dashboard", to: "dashboard#index", as: :dashboard
   # get "/dashboard/search_groups", to: "dashboard#groups_list", as: :groups_list
-  get "/exit", to: "auth#exit", as: :exit
+  get "/logout", to: "auth#logout", as: :logout
 
   resources :groups, only: [:create]
 end

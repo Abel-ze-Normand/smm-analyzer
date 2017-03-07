@@ -31,8 +31,7 @@ class ApplicationController < ActionController::Base
   def handle_vk_api_error(e)
     case e.code
     when 5 # description: User authorization failed: access_token was given to another ip address.
-      logout_user
-      redirect_to login_path
+      redirect_to logout_path
     end
   end
 end
