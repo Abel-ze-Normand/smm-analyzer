@@ -1,8 +1,8 @@
 module Vk
   class GroupScannerService
     def initialize(options = {})
-      @owner_id = options[:user_id]
-      @access_token = options[:access_token]
+      @owner_id = options.fetch(:user_id)
+      @access_token = options.fetch(:access_token)
       @vk_app = VkClient.new
     end
 
@@ -19,7 +19,7 @@ module Vk
     end
 
     def vk_find_groups
-     @vk_app.find_groups(@owner_id)
+      @vk_app.find_groups(@owner_id)
     end
 
     def parse_groups(raw_groups)

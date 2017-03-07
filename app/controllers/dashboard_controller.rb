@@ -3,9 +3,12 @@ class DashboardController < ApplicationController
   before_action :require_login
 
   def index
-    context_data = LoadDashboardDataService.new(user: @current_user).call
-    @users_vk_group_list = load_groups_from_vk
+    context_data = LoadDashboardDataService.new(
+      user: @current_user,
+      access_token: session[:access_token]
+    ).call
     @users_added_group_list = context_data[:groups]
+    @users_vk_group_list = context_data[:vk_groups]
   end
 
   # remove?
@@ -27,9 +30,5 @@ class DashboardController < ApplicationController
 
   def strong_groups_list_params
     params.require(:groups)
-  end
-
-  def load_groups_from_vk
-    @groups = Vk::GroupScannerService.new(session).call
   end
 end
