@@ -8,7 +8,7 @@ module Vk
     def call
       group = Group.find(@group_id)
       job = LoadGroupStatsJob.perform_later(@options)
-      group.update_attributes(stat_job_status: :running, stat_job_id: job.job_id)
+      group.update_attributes(stat_job_status: "running", stat_job_id: job.job_id)
     end
   end
 end

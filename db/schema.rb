@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(version: 20170303181149) do
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.string   "photo_link"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "user_id"
-    t.string   "stat_job_status"
+    t.string   "stat_job_status",  default: "not_started"
     t.string   "stat_job_id"
-    t.string   "posts_job_status"
+    t.string   "posts_job_status", default: "not_started"
     t.string   "posts_job_id"
     t.index ["user_id"], name: "index_groups_on_user_id"
   end

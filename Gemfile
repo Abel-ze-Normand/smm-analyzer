@@ -34,6 +34,8 @@ gem 'twitter-bootstrap-rails'
 gem 'pry-rails'
 gem 'pry-doc'
 gem 'active_job_status'
+gem 'rspec-rails'
+gem 'factory_girl_rails'
 ###################
 
 # Use Redis adapter to run Action Cable in production

@@ -12,7 +12,7 @@ class LoadGroupStatsJob < ApplicationJob
 
   def unlock_group(group_id)
     group = Group.find(group_id)
-    group.stat_job_status = :done
+    group.stat_job_status = "done"
     group.save!
   end
 end
