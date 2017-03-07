@@ -38,8 +38,12 @@ class VkClient
     @app.groups.get(user_id: uid, count: 1000, extended: 1, filter: "admin")
   end
 
-  def get_groups(group_id)
-    @app.groups.getById(group_id: group_id, fields: "description")
+  def get_groups(group_ids)
+    @app.groups.getById(group_ids: group_ids, fields: "description")
+  end
+
+  def get_group(group_id)
+    @app.groups.getById(group_id: group_id, fields: "description").first
   end
 
   def get_stats(opts = {})

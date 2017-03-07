@@ -34,8 +34,6 @@ gem 'twitter-bootstrap-rails'
 gem 'pry-rails'
 gem 'pry-doc'
 gem 'active_job_status'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
 ###################
 
 # Use Redis adapter to run Action Cable in production
@@ -49,6 +47,8 @@ gem 'factory_girl_rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
