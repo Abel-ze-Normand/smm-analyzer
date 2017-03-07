@@ -1,3 +1,241 @@
-<div class="jumbotron">
-  <h1 class="display-3">Hello world</h1>
+<ul class="nav nav-tabs" id="myGroups">
+	<% @users_added_group_list.each.with_index do |group, index| %>
+		<li role="presentation"
+			<% if index == 0 %>
+		      class="active"
+		    <% end %>
+	    >
+			<a href="#group-tab-item-<%= group.id %>"
+			   role="tab"
+			   data-toggle="tab"
+			   index="<%= index %>"
+			   ><%= group.name %></a>
+		</li>
+	<% end %>
+  <li role="presentation"><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
+</ul>
+
+<!-- Tab panes -->
+  <div class="tab-content tab-groups">
+  	<!-- Tab add group -->
+  	<div role="tabpanel" class="tab-pane" id="tab-add-group">
+  		<!-- @TODO добавить aciton-->
+  		<form action="">
+  			<span>Список групп пользователя</span>
+  			<div class="row">
+  				<div class="col-md-10">
+  					<select>
+				    	<% @users_vk_group_list.each do |group, index| %>
+						  <option value="<%= group.id %>"><%= group.name %></option>
+						<% end %>
+					</select>
+  				</div>
+  				<div class="col-md-2">
+					<button type="send" class="btn btn-success btn-sm">Добавить</button>
+  				</div>
+  			</div>
+			<br>
+  		</form>
+    </div>
+    <!-- / Tab add group -->
+
+    <% @users_added_group_list.each.with_index do |group, index| %>
+		<div role="tabpanel"
+			 class="tab-pane <% if index == 0 %>active<% end %>"
+			 id="group-tab-item-<%= group.id %>" >
+	    	<div class="row">
+	    		<div class="col-md-6 group-info">
+	    			Информация
+	    			<ul>
+	    				<li>ID: <span><%= group.id %></span></li>
+	    				<li>Название: <span><%= group.name %></span></li>
+	    				<li>sdfsdf</li>
+	    				<li>sdfsdf</li>
+	    				<li>sdfsdf</li>
+	    				<li>sdfsdf</li>
+	    			</ul>
+	    		</div>
+	    		<div class="col-md-6 group-settings">
+	    			<h3 class="text-center">Настройки</h3>
+	    			<!--@TODO Добавить action -->
+	    			<form action="" class="form-horizontal" role="form" method="POST">
+	    				<div class="form-group">
+							<div class="form-group">
+							    <label for="inputEmail3" class="col-md-6 control-label">Выбор ЦА</label>
+							    <div class="col-md-6">
+							    	<select name="CA" id="select-CA">
+							    		<option value="1">Молодежь</option>
+							    		<option value="2">Наркоманы</option>
+							    		<option value="3">Программисты</option>
+							    	</select>
+							    </div>
+							</div>
+							<div class="form-group row">
+							    <label for="inputEmail3" class="col-md-6 control-label">Выбор категорий</label>
+							    <div class="col-md-4">
+							    	<select name="categories" id="select-categories">
+							    		<option value="1">Котики</option>
+							    		<option value="2">Наркотики</option>
+							    		<option value="3">Программы</option>
+							    	</select>
+							    	<select name="categories" id="select-categories">
+							    		<option value="1">Котики</option>
+							    		<option value="2">Наркотики</option>
+							    		<option value="3">Программы</option>
+							    	</select>
+							    	<select name="categories" id="select-categories">
+							    		<option value="1">Котики</option>
+							    		<option value="2">Наркотики</option>
+							    		<option value="3">Программы</option>
+							    	</select>
+							    </div>
+							     <div class="col-md-2">
+							    	<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory">
+							    		<span class="glyphicon glyphicon-plus" aria-hidden="true">
+							    		</span>
+							    	</button>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <div class="col-sm-offset-6 col-sm-6">
+							      <button type="submit" class="btn btn-info btn-sm" >Сканировать</button>
+							    </div>
+						    </div>
+						</div>
+	    			</form>
+	    		</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="col-md-12 group-statistic">
+	    			<h3 class="text-center">Статистика</h3>
+	    			<div class="graphics-view">
+	    				<!--Добавить grup.id-->
+	    				<svg id="statistic" class="statistic-demo" width="800" height="300"></svg>
+	    			</div>
+	    		</div>
+
+	    	</div>
+
+	    	<div class="row">
+	    		<div class="col-md-12 group-result">
+	    			<h3 class="text-center">Результат</h3>
+	    			<div class="graphics-view">
+	    			Котики
+	    			</div>
+	    		</div>
+
+	    	</div>
+	    </div>
+	<% end %>
+
+  </div>
+
+  <!--
+<div class='test'>
+
+
 </div>
+-->
+<!--Forms -->
+<!-- Modal -->
+<div id="addCategory" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Добавить категорию</h4>
+      </div>
+      <div class="modal-body">
+      	<form action="" class="form-horizontal" role="form" method="POST">
+      		<div class="form-group">
+			    <div class="form-group">
+				    <label for="inputEmail3" class="col-md-6 control-label">Создать и добавить</label>
+				    <div class="col-md-6">
+				      <input type="text" class="form-control" placeholder="Название" name="name" >
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputPassword3" class="col-md-6 control-label">Добавить</label>
+				    <div class="col-md-6">
+				      	<select name="categories" id="select-categories">
+				    		<option value="1">Котики</option>
+				    		<option value="2">Наркотики</option>
+				    		<option value="3">Программы</option>
+				    	</select>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <div class="col-md-offset-6 col-md-6">
+				      <button type="button" class="btn btn-default btn-sm">Выбрать</button>
+				    </div>
+				</div>
+			</div>
+      	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--/Forms -->
+<script>
+	$('#myGroups a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+</script>
+<!-- D3 -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+//@todo Сделать инициализацию
+$(document).ready(function(){
+	var svg = d3.select(".statistic-demo"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("data.tsv", function(d) {
+  d.frequency = +d.frequency;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.letter; }));
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.frequency); });
+});
+});
+</script>

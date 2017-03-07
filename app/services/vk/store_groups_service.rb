@@ -11,10 +11,8 @@ module Vk
     private
 
     def store_groups_in_db
-      @raw_groups_list.lazy.map do |raw_group|
-        Group.new(**parse_raw_group(raw_group))
-      end.map do |group|
-        group.save!
+      @raw_groups_list.map do |raw_group|
+        Group.new(**parse_raw_group(raw_group)).save!
       end
     end
 

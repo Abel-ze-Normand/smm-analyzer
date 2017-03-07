@@ -7,8 +7,45 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+	
   <body>
-    <%= yield %>
+	<div class="wrapper">
+		<div class="top-bar navbar-fixed-top">
+			<div class="container">
+					<a href="#" class="pull-left toggle-sidebar-collapse"><i class="fa fa-bars"></i></a>
+					<!-- logo -->
+					<div class="pull-left left logo">
+						<span >SMM-project BETA</span>
+					</div>
+					<div class="navbar-settings">
+					 	<span class="navbar-settings-item"><a href="#">Настройки</a></span>
+					 	<span class="navbar-settings-item"><a href="/exit">Выход</a></span>
+				    </div>
+			</div>
+			<!-- /container -->
+		</div>
+
+		<div class="row work-area">
+			<div id="left-sidebar" class="left-sidebar col-md-3">
+				<!-- main-nav -->
+					<nav class="main-nav">
+						<ul class="main-menu">
+							<li><a href="page-projects.html"><i class="fa fa-briefcase"></i><span class="text" style="opacity: 1;">Projects</span></a></li>
+							<li><a href="page-project-detail.html"><i class="fa fa-tasks"></i><span class="text" style="opacity: 1;">Project Detail</span></a></li>
+						</ul>
+					</nav>
+				<!-- /main-nav -->	
+			</div>
+
+			<div id="main-content-wrapper" class="content-wrapper col-md-9" >
+				<ul class="breadcrumb">
+					<li><i class="fa fa-home"></i><a href="#">Home</a></li>
+					<li class="active">Dashboard</li>
+				</ul>
+	    		<%= yield %>
+			</div>
+		</div>
+	
+	</div>
   </body>
 </html>
