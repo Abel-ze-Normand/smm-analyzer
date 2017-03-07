@@ -6,7 +6,15 @@ RSpec.describe LoadDashboardDataService, "#call" do
     @group2 = create(:group)
     @user = create(:user, groups: [@group1, @group2])
   end
+
   subject { described_class.new(user: @user).call }
 
-  it { is_expected.to eq(groups: [@group1, @group2])}
+  let(:expected_responce) do
+    {
+      groups: [@group1, @group2]
+    }
+  end
+
+  # assertions
+  it { is_expected.to eq(expected_responce)}
 end
