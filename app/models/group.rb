@@ -5,5 +5,5 @@ class Group < ApplicationRecord
   has_many :posts, dependent: :destroy
   validates :stat_job_status, inclusion: { in: %w(not_started running done) }
   validates :posts_job_status, inclusion: { in: %w(not_started running done) }
-  validates_uniqueness_of :id, scope: [:name, :user_id, ]
+  validates_uniqueness_of :id, scope: [:name, :user_id]
 end

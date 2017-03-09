@@ -40,7 +40,8 @@ RSpec.describe Vk::ParsePostsService do
     ]
   }
 
-  subject { ->(posts) { described_class.new(posts).call } }
+  before(:all) { @group = create(:group) }
+  subject { ->(posts) { described_class.new(posts_list: posts, group_id: @group.id).call } }
   it {
     expect(subject.call(example_posts)).to satisfy { |parsed_posts|
       parsed_posts.length == 2 and

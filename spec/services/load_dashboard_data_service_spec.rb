@@ -7,11 +7,11 @@ RSpec.describe LoadDashboardDataService, "#call" do
     @user = create(:user, groups: [@group1, @group2])
   end
 
-  subject { described_class.new(user: @user).call }
+  subject { described_class.new(user: @user, entries: [:groups]).call }
 
   let(:expected_responce) do
     {
-      groups: [@group1, @group2]
+      groups: [@group1, @group2],
     }
   end
 

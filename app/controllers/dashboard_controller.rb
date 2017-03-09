@@ -5,7 +5,8 @@ class DashboardController < ApplicationController
   def index
     context_data = LoadDashboardDataService.new(
       user: @current_user,
-      access_token: session[:access_token]
+      access_token: session[:access_token],
+      entries: [:groups, :vk_groups]
     ).call
     @users_added_group_list = context_data[:groups]
     @users_vk_group_list = context_data[:vk_groups]

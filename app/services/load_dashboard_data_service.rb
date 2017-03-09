@@ -1,17 +1,21 @@
 class LoadDashboardDataService
+  KEYS_DB = {
+    groups: ->(i) { i.get_groups },
+    vk_groups: ->(i) { i.get_vk_groups }
+  }
+
   def initialize(options = {})
     @options = options
     @user = options.fetch(:user)
+    @entries = options.fetch(:entries)
+    @groups_ids = []
   end
 
   def call
-    {
-      groups: get_groups,
-      vk_groups: get_vk_groups
-    }
+    @entries.reduce({}) do |acc, e|
+      acc.merge(e => KEYS_DB[e].call(self))
+    end
   end
-
-  private
 
   def get_groups
     @groups = @user.groups
