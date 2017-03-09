@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "/logout", to: "auth#logout", as: :logout
 
   resources :groups, only: [:create]
+  resources :themes, only: [:new, :create]
 end

@@ -1,0 +1,11 @@
+<%= form_for @theme, html: { class: "form-horizontal" } do |f| %>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :group_id %>
+  <div class="form-group">
+    <%= f.label "Название" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "OK" %>
+  </div>
+<% end %>

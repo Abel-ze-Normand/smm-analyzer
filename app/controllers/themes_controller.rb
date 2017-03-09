@@ -2,7 +2,8 @@ class ThemesController < ApplicationController
   before_action :require_login
 
   def new
-    @theme = Theme.new
+    @group = Group.find(params[:group_id])
+    @theme = Theme.new(group_id: @group.id)
   end
 
   def create
