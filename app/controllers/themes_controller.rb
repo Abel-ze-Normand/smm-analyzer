@@ -8,8 +8,10 @@ class ThemesController < ApplicationController
 
   def create
     service_result = CreateThemeService.new(strong_theme_params).call
-    flash[:error] = service_result.errors
-    render action: :new and return unless service_result.successful?
+    unless service_result.successful?
+      @theme = service_result.result
+      render action: :new and return
+    end
     redirect_to dashboard_path
   end
 
