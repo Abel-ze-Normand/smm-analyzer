@@ -1,8 +1,8 @@
 class AuthController < ApplicationController
+  layout "login", only: [:login]
   def login
     redirect_to dashboard_path and return if user_logged?
     @auth_path = Vk::PreAuthenticatorService.new.call
-    render layout: "login"
   end
 
   def auth
