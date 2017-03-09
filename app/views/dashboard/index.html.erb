@@ -9,7 +9,7 @@
 	 role="tab"
 	 data-toggle="tab"
 	 index="<%= index %>"
-      ><%=  group.name %></a>
+      ><%=group.name %></a>
     </li>
   <% end %>
   <li role="presentation"><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
@@ -22,12 +22,13 @@
     <%= form_tag groups_path do |f| %>
       <span>Список групп пользователя</span>
       <div class="row">
-  	<div class="col-md-10">
+  		<div class="col-md-10">
           <%= select_tag :group_id, options_from_collection_for_select(@users_vk_group_list, :id, :name) %>
-  	</div>
-  	<div class="col-md-2">
+  		</div>
+  		<div class="col-md-2">
           <%= submit_tag "Добавить", class: "btn btn-success btn-sm"%>
-  	</div>
+  		</div>
+  	
       </div>
       <br>
     <% end %>
@@ -56,40 +57,55 @@
 	  <form action="" class="form-horizontal" role="form" method="POST">
 	    <div class="form-group">
 	      <div class="form-group">
-		<label for="inputEmail3" class="col-md-6 control-label">Выбор ЦА</label>
-		<div class="col-md-6">
-		  <select name="CA" id="select-CA">
-		    <option value="1">Молодежь</option>
-		    <option value="2">Наркоманы</option>
-		    <option value="3">Программисты</option>
-		  </select>
-		</div>
-	      </div>
-	      <div class="form-group row">
-		<label for="inputEmail3" class="col-md-6 control-label">Выбор категорий</label>
-		<div class="col-md-4">
-		  <select name="categories" id="select-categories">
-		    <option value="1">Котики</option>
-		    <option value="2">Наркотики</option>
-		    <option value="3">Программы</option>
-		  </select>
-		  <select name="categories" id="select-categories">
-		    <option value="1">Котики</option>
-		    <option value="2">Наркотики</option>
-		    <option value="3">Программы</option>
-		  </select>
-		  <select name="categories" id="select-categories">
-		    <option value="1">Котики</option>
-		    <option value="2">Наркотики</option>
-		    <option value="3">Программы</option>
-		  </select>
-		</div>
-		<div class="col-md-2">
-		  <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory">
-		    <span class="glyphicon glyphicon-plus" aria-hidden="true">
-		    </span>
-		  </button>
-		</div>
+	      	<div class="col-md-6">
+				<label for="inputEmail3" class="control-label">Выбор категорий</label>
+		  	</div >
+			<div class="col-md-6">
+				<button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addCategory">
+			    	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  		</button>
+		  	</div>
+			</div>
+			<div class="col-md-12  table-responsive">		    
+			  	<table class="table table-bordered">
+				<thead>
+			 	<tr>
+			 	<th width="20%">Номер</th>
+			 	<th width="60%">Название</th>
+			 	<th width="20%">Удалить</th>
+			 	</tr>
+			 	</thead>
+			 	<tbody>
+			 	<tr>
+			 	<td>1</td>
+				<td>Кошечки</td>
+				<td>
+					<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
+			    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		  			</button>
+				</td>
+				</tr>
+				<tr>
+				<td>2</td>
+				<td>Песики</td>
+				<td>
+					<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
+			    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		  			</button>
+		  		</td>
+				</tr>
+				<tr>
+				<td>3</td>
+				<td>Слоники</td>
+				<td>
+					<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
+			    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		  			</button>
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
 	      </div>
 	      <div class="form-group">
 		<div class="col-sm-offset-6 col-sm-6">
@@ -146,31 +162,25 @@
       	<form action="" class="form-horizontal" role="form" method="POST">
       	  <div class="form-group">
 	    <div class="form-group">
-	      <label for="inputEmail3" class="col-md-6 control-label">Создать и добавить</label>
+	    	<div class="col-md-4">
+	      		<label for="inputEmail3" class=" control-label">Создать и добавить</label>
+	    	</div>
 	      <div class="col-md-6">
-		<input type="text" class="form-control" placeholder="Название" name="name" >
+			<input type="text" id=""class="form-control" placeholder="Название" name="name" >	    
 	      </div>
+	      <div class="col-md-2">
+				<button type="button" class="btn btn-default btn-sm">Выбрать</button>
+		    </div>
 	    </div>
 	    <div class="form-group">
-	      <label for="inputPassword3" class="col-md-6 control-label">Добавить</label>
-	      <div class="col-md-6">
-		<select name="categories" id="select-categories">
-		  <option value="1">Котики</option>
-		  <option value="2">Наркотики</option>
-		  <option value="3">Программы</option>
-		</select>
-	      </div>
-	    </div>
-	    <div class="form-group">
-	      <div class="col-md-offset-6 col-md-6">
-		<button type="button" class="btn btn-default btn-sm">Выбрать</button>
-	      </div>
+	      
 	    </div>
 	  </div>
       	</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+
       </div>
     </div>
 
@@ -183,6 +193,18 @@
    $(this).tab('show')
  })
 </script>
+<!-- Add option "Сategory" -->
+ <script>
+function myFunction(k) {
+    alert(k.length);
+    if(k.length > 0)
+    {
+	   	var x = document.getElementById("select-categories");
+	    var option = document.createElement("option");
+	    option.text = k;
+	    x.add(option);
+	}
+}
 <!-- D3 -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
