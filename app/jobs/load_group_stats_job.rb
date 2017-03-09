@@ -11,8 +11,6 @@ class LoadGroupStatsJob < ApplicationJob
   private
 
   def unlock_group(group_id)
-    group = Group.find(group_id)
-    group.stat_job_status = "done"
-    group.save!
+    Group.find(group_id).update_attributes!(stat_job_status: "done")
   end
 end

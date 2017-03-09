@@ -23,7 +23,7 @@ module Vk
         day: DateTime.parse(stat["day"]),
         unique_visitors_count: stat["visitors"],
         subscribed_count: stat["subscribed"],
-        unsubscribed_count: stat["unsubscribed"]
+        unsubscribed_count: stat["unsubscribed"],
       )
     end
 

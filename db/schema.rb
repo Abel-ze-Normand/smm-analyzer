@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170303181149) do
     t.datetime "updated_at",    null: false
     t.integer  "theme_id"
     t.integer  "group_stat_id"
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_group_posts_on_group_id"
     t.index ["group_stat_id"], name: "index_group_posts_on_group_stat_id"
     t.index ["theme_id"], name: "index_group_posts_on_theme_id"
   end

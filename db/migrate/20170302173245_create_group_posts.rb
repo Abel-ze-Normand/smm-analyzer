@@ -8,5 +8,6 @@ class CreateGroupPosts < ActiveRecord::Migration[5.0]
     end
     add_reference :group_posts, :theme, foreign_key: true
     add_reference :group_posts, :group_stat, foreign_key: :true
+    add_reference :group_posts, :group, foreign_key: :true
   end
 end
