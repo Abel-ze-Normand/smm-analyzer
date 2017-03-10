@@ -19,15 +19,15 @@ FactoryGirl.define do
     subscribed_count 5
     unsubscribed_count 2
     group
-    age_cluster
   end
 
   factory :group_post do
     text "lorem ipsum"
     likes_count 11
     date DateTime.parse("12-02-2015")
-    theme
+    group
     group_stat
+    theme
   end
 
   factory :age_cluster do
@@ -39,5 +39,6 @@ FactoryGirl.define do
     from_30_to_35_count 2
     from_35_to_45_count 1
     from_45_to_100_count 0
+    group_stat
   end
 end

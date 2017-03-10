@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309112658) do
+ActiveRecord::Schema.define(version: 20170310182012) do
 
   create_table "age_clusters", force: :cascade do |t|
     t.integer "from_12_to_18_count"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20170309112658) do
     t.integer "from_30_to_35_count"
     t.integer "from_35_to_45_count"
     t.integer "from_45_to_100_count"
+    t.integer "group_stat_id"
+    t.index ["group_stat_id"], name: "index_age_clusters_on_group_stat_id"
   end
 
   create_table "group_posts", force: :cascade do |t|
@@ -41,12 +43,10 @@ ActiveRecord::Schema.define(version: 20170309112658) do
     t.datetime "day"
     t.integer  "unique_visitors_count"
     t.integer  "subscribed_count"
-    t.integer  "unsubcribed_count"
+    t.integer  "unsubscribed_count"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "group_id"
-    t.integer  "age_cluster_id"
-    t.index ["age_cluster_id"], name: "index_group_stats_on_age_cluster_id"
     t.index ["group_id"], name: "index_group_stats_on_group_id"
   end
 
