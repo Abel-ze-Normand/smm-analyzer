@@ -40,7 +40,7 @@
 	class="tab-pane <% if index == 0 %>active<% end %>"
 	id="group-tab-item-<%= group.id %>" >
 	<div class="row">
-		<div class="col-md-6 group-info">
+		<div class="col-md-6 group-info-elem group-info">
 			Информация
 			<ul>
 				<li>ID: <span><%= group.id %></span></li>
@@ -51,7 +51,7 @@
 				<li>sdfsdf</li>
 			</ul>
 		</div>
-		<div class="col-md-6 group-settings">
+		<div class="col-md-6 group-info-elem group-settings">
 			<h3 class="text-center">Настройки</h3>
 			<!--@TODO Добавить action -->
 			<form action="" class="form-horizontal" role="form" method="POST">
@@ -116,7 +116,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12 group-statistic">
+		<div class="col-md-12 group-info-elem group-statistic">
 			<h3 class="text-center">Статистика</h3>
 			<div class="graphics-view">
 				<!--Добавить grup.id-->
@@ -127,7 +127,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-12 group-result">
+		<div class="col-md-12 group-info-elem group-result">
 			<h3 class="text-center">Результат</h3>
 			<div class="graphics-view">
 				Котики
