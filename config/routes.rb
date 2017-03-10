@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   get "/load_posts", to: "posts#load_posts", as: :load_posts
 
   resources :groups, only: [:create]
-  resources :themes, only: [:new, :create]
+  resources :themes, only: [:new, :create, :destroy]
 end

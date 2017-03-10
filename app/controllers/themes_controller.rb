@@ -15,6 +15,11 @@ class ThemesController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def destroy
+    DeleteThemeService.new(theme_id: params[:id]).call
+    redirect_to dashboard_path
+  end
+
   private
 
   def strong_theme_params
