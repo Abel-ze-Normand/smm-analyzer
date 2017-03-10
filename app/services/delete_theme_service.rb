@@ -1,6 +1,6 @@
 class DeleteThemeService
   def initialize(options = {})
-    @theme_id = options.fetch(:theme_id)
+    @theme_id = options.fetch(:id)
   end
 
   def call

@@ -1,4 +1,4 @@
-class GetStatsForGroupService
+class GetThemesForGroupService
   def initialize(options = {})
     @group_id = options.fetch(:group_id)
   end
@@ -6,7 +6,7 @@ class GetStatsForGroupService
   def call
     {
       group: group,
-      stats: stats
+      themes: themes
     }
   end
 
@@ -16,7 +16,7 @@ class GetStatsForGroupService
     @group = Group.find(@group_id)
   end
 
-  def stats
-    @group.group_stats
+  def themes
+    @group.themes
   end
 end

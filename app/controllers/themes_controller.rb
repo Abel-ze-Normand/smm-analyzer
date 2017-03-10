@@ -15,8 +15,14 @@ class ThemesController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def index
+    result = GetThemesForGroupService.new(params).call
+    @group = result[:group]
+    @themes = result[:themes]
+  end
+
   def destroy
-    DeleteThemeService.new(theme_id: params[:id]).call
+    DeleteThemeService.new(params).call
     redirect_to dashboard_path
   end
 
