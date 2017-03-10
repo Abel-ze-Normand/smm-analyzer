@@ -13,4 +13,10 @@ class StatsController < ApplicationController
     ).call
     redirect_to dashboard_path
   end
+
+  def index
+    result = GetStatsForGroupService.new(params).call
+    @stats = result[:stats]
+    @group = result[:group]
+  end
 end
