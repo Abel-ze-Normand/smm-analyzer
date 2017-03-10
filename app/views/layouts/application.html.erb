@@ -11,28 +11,49 @@
   <body>
     <div class="wrapper">
       <div class="top-bar navbar-fixed-top">
-	<div class="container">
-	  <a href="#" class="pull-left toggle-sidebar-collapse"><i class="fa fa-bars"></i></a>
-	  <!-- logo -->
-	  <div class="pull-left left logo">
-	    <span >SMM-project BETA</span>
-	  </div>
-	  <div class="navbar-settings">
-	    <span class="navbar-settings-item"><%= link_to "Настройки", "#" %></span>
-	    <span class="navbar-settings-item"><%= link_to "Выход", logout_path %></span>
-	  </div>
-	</div>
-	<!-- /container -->
+        <div class="btn-left-menu-collapse">
+		  	<%= content_tag(:span, fa_icon('bars', text: "Меню") )  %>
+		</div>
+		<div class="logo-block">
+			<!--<span>SMM-project BETA</span>-->
+			<div class="logo"></div>
+		</div>
+		<div class="container navbar-navigation">
+		  <div class="navbar-settings">
+		    <span class="navbar-settings-item"><%= link_to "Настройки", "#" %></span>
+		    <span class="navbar-settings-item"><%= link_to  content_tag(:span, fa_icon('sign-out', text: "Выход") ), logout_path %></span>
+		  </div>
+		</div>
+		<!-- /container -->
       </div>
 
       <div class="row work-area">
 	<div id="left-sidebar" class="left-sidebar col-md-3">
+		<div class="user-info-block">
+			<div class="user-photo">
+				<img src="https://pp.vk.me/c400/g00001/d_7bfe2183.jpg" alt="" class="img-responsive">
+			</div>
+			<div class="user-info">
+				<span class="user-welcome">
+					<i>Добро пожаловать!</i>
+				</span>
+				<br>
+				<span class="user-fio">
+					Муллагалиев
+					<br>
+					Андрей
+					<br>
+					Андреевич
+				</span>
+			</div>
+		</div>
 	  <!-- main-nav -->
 	  <nav class="main-nav">
-	    <ul class="main-menu">
-	      <li><a href="page-projects.html"><i class="fa fa-briefcase"></i><span class="text" style="opacity: 1;">Projects</span></a></li>
-	      <li><a href="page-project-detail.html"><i class="fa fa-tasks"></i><span class="text" style="opacity: 1;">Project Detail</span></a></li>
-	    </ul>
+	    <ul role="tablist">
+		  <li role="presentation" class="active"><a href="#"><i class="fa fa-briefcase"></i>Home<span class="badge">42</span></a></li>
+		  <li role="presentation"><a href="#"><i class="fa fa-tasks"></i>Profile</a></li>
+		  <li role="presentation"><a href="#"><i class="fa fa-tasks"></i>Messages <span class="badge">3</span></a></li>
+		</ul>
 	  </nav>
 	  <!-- /main-nav -->
 	</div>
@@ -49,3 +70,12 @@
     </div>
   </body>
 </html>
+
+<script>
+	// @todo узнать как раскидать js код 
+	$(document).ready(function(){
+		$('.btn-left-menu-collapse').click(function(){
+			$('#left-sidebar').toggleClass('left-sidebar--hide');
+		});
+	});
+</script>

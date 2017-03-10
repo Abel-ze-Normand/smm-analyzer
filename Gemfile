@@ -36,6 +36,10 @@ gem 'pry-doc'
 gem 'active_job_status'
 ###################
 
+##### FRONT_END ####
+gem "font-awesome-rails"
+###################
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

@@ -19,7 +19,6 @@
 <div class="tab-content tab-groups">
 	<!-- Tab add group -->
 	<div role="tabpanel" class="tab-pane" id="tab-add-group">
-		<% #render :partial => "themes/new", :locals => {:theme => @theme} %>
 		<%= form_tag groups_path do |f| %>
 		<span>Список групп пользователя</span>
 		<div class="row">
@@ -40,7 +39,7 @@
 	class="tab-pane <% if index == 0 %>active<% end %>"
 	id="group-tab-item-<%= group.id %>" >
 	<div class="row">
-		<div class="col-md-6 group-info">
+		<div class="col-md-6 group-info-elem group-info">
 			Информация
 			<ul>
 				<li>ID: <span><%= group.id %></span></li>
@@ -51,10 +50,10 @@
 				<li>sdfsdf</li>
 			</ul>
 		</div>
-		<div class="col-md-6 group-settings">
+		<div class="col-md-6 group-info-elem group-settings">
 			<h3 class="text-center">Настройки</h3>
 			<!--@TODO Добавить action -->
-			<form action="" class="form-horizontal" role="form" method="POST">
+			<div class="form-horizontal">
 				<div class="form-group">
 					<div class="form-group">
 						<div class="col-md-6">
@@ -108,15 +107,18 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-6 col-sm-6">
-							<button type="submit" class="btn btn-info btn-sm" >Сканировать</button>
+							<%= form_tag load_stats_path, :method => :get do %>
+									<%= hidden_field :params, :group_id, :value => group.id %>
+									<%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
+							<% end %>
 						</div>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12 group-statistic">
+		<div class="col-md-12 group-info-elem group-statistic">
 			<h3 class="text-center">Статистика</h3>
 			<div class="graphics-view">
 				<!--Добавить grup.id-->
@@ -127,7 +129,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-12 group-result">
+		<div class="col-md-12 group-info-elem group-result">
 			<h3 class="text-center">Результат</h3>
 			<div class="graphics-view">
 				Котики
@@ -138,13 +140,6 @@
 <% end %>
 
 </div>
-
-<!--
-     <div class='test'>
-
-
-     </div>
- -->
  <!--Forms -->
  <!-- Modal -->
  <div id="addCategory" class="modal fade" role="dialog">
@@ -205,9 +200,6 @@
   		 * @todo проверки на существование 
   		 */
 	});
- </script>
- <!-- Add option "Сategory" -->
- <script>
  	function myFunction(k) {
  		alert(k.length);
  		if(k.length > 0)
@@ -218,9 +210,10 @@
  			x.add(option);
  		}
  	}
- 	<!-- D3 -->
- 	<script src="https://d3js.org/d3.v4.min.js"></script>
- 	<script>
+</script>
+<!-- D3 -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
  //@todo Сделать инициализацию
  $(document).ready(function(){
  	var svg = d3.select(".statistic-demo"),
