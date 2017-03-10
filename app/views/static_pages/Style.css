@@ -82,6 +82,7 @@ textarea{overflow:auto}
 [type=search]{
 	-webkit-appearance:textfield;
 	outline-offset:-2px}
+	/*# !!!---------------------------------------------------------------*/
 [type=search]::-webkit-search-cancel-button,
 [type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{
 	-webkit-appearance:button;
@@ -110,6 +111,7 @@ body{line-height:1}
 ol,ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:after,blockquote:before,q:after,q:before{
+	content:"";
 	content:none}
 table{
 	border-collapse:collapse;
@@ -140,8 +142,9 @@ a:active,button:active,input:active{
 	background-size:contain;
 	background-repeat:no-repeat;
 	text-decoration:none}
- .promo-text{
- 	color:#000;
+.promo-client.is-rambler{
+	width:130px;height:27.5px}
+ .promo-text{color:#000;
  	line-height:1.45}
  .promo-text.is-white{color:#fff}
  .promo-text_icon{
@@ -202,13 +205,13 @@ a:active,button:active,input:active{
 	top:0;
 	left:-.55em;
 	color:hsla(0,0%,100%,.5);
-	}
+	content:"«"}
 .promo-text_quote:after{
 	color:hsla(0,0%,100%,.5);
-	}
+	content:"»"}
 .promo-text_quote:before{
-	}
-.promo-text_quote:after{}
+	content:"â€œ"}
+.promo-text_quote:after{content:"â€"}
 .promo-text_desc{
 	margin-bottom:26px;
 	width:280px}
@@ -310,3 +313,4 @@ a:active,button:active,input:active{
 	margin-right:15px;
 	padding-right:16px;
 	background:linear-gradient(90deg,transparent 95%,#d32560 0)}
+/*# sourceMappingURL=promo.css.map */
