@@ -2,75 +2,143 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /*
-		reset
-    	*/
-    	.form-horizontal .form-group{
-    		margin: 0;
-    		padding: 0;
-    		padding-top: 10px;
-    	}
-		select{
-			display: inline-block;
-    		vertical-align: sub;
-    		width: 100%;
-		}
-    	body{
-    	}
-	    *{
-	    	box-sizing: border-box;
-	    }
-    	.wrapper{
-    		width: 100%;
-    		margin: 0 auto;
-    		overflow: hidden;
-    	}
-    	.wrapper .top-bar {
-    		height: 30px;
-    		background-color: #708090;
-    		padding: 5px 0;
-    	}
-    	.wrapper .work-area{
-    		width: 100%;
-    		margin-top: 30px;
-    	}
-    	.wrapper .left-sidebar{
-    		position: fixed;
-    		height: 100%;
-    		transition: all 0.3s ease-in-out;
-    		padding-right: 0;
-    		padding-left: 0;
-    		left: 0;
-    		z-index: 999;
-    		background-color: #ececec;
-    		overflow: scroll;
-    	}
-    	.wrapper .content-wrapper{
-    		position: absolute;
-    		right: 0;
-    		background-color: #f1f1f1;
-    		border-left: 1px solid #e4e4e4;
-			padding: 15px 30px;
-			min-height: 100%;
-    	}
-    	.logo{
-    		//width: 120px;
-    		height: 20px;
-    		color: white;
-    	}
-    	.top-bar{
-    		color: white;
-    	}
-    	.navbar-settings {
-			//width: 120px;
-			height: 20px;
-			//background-color: #ff2fff;
-			float: right;
-    	}
-    	.navbar-settings .navbar-settings-item{
-    		margin-left: 10px;
-    	}
-    	.navbar-settings a{
-    		font-size: 10px;
-    		padding: 0 !important;
-			color: white;
-    	}
+reset
+*/
+.form-horizontal .form-group{
+	margin: 0;
+	padding: 0;
+	padding-top: 10px;
+}
+select{
+	display: inline-block;
+	vertical-align: sub;
+	width: 100%;
+}
+body{
+}
+*{
+	box-sizing: border-box;
+    transition: 0.6s;
+}
+.fa{
+    margin: 4px;
+}
+/*
+base
+*/
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    .top-bar{
+        height: 30px;
+        background-color: #708090;
+        padding: 5px 0;
+    }
+    .work-area{
+        width: 100%;
+        margin-top: 30px;
+    }
+    .left-sidebar{
+        position: fixed;
+        height: 100%;
+        transition: all 0.3s ease-in-out;
+        padding: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        left: 0;
+        z-index: 999;
+        background-color: #ececec;
+        overflow: scroll;
+    }
+    .left-sidebar--hide{
+        @extend .left-sidebar;
+        & *{
+        opacity: 0;
+        transition: 0.33s; 
+        }
+        width: 0;
+        
+        & + .content-wrapper{
+            width: 100%;
+        }
+    }
+    .content-wrapper{
+        position: absolute;
+        right: 0;
+        background-color: #f1f1f1;
+        border-left: 1px solid #e4e4e4;
+        padding: 15px 30px;
+        min-height: 100%;
+    }
+}
+/*
+other
+*/
+.btn-left-menu-collapse{
+    margin-left: 10px;
+    position: absolute;
+    //float: left;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.4);
+    }
+}
+.logo-block{
+	//width: 120px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+	height: 0;
+	color: white;
+    & .logo{
+        display: inline-block;
+        background-image: image_url('logo.png');
+        height: 20px;
+        width: 120px;
+        background-repeat: no-repeat;
+    }
+}
+.top-bar{
+	color: white;
+    .navbar-navigation{
+    }
+}
+.navbar-settings {
+	//width: 120px;
+	height: 20px;
+	//background-color: #ff2fff;
+	float: right;
+    z-index: 2;
+}
+.navbar-settings .navbar-settings-item{
+	margin-left: 10px;
+}
+.navbar-settings a{
+	font-size: 14px;
+	padding: 0 !important;
+	color: white;
+}
+
+/*
+Components
+*/
+.user-info-block{
+    width: 100%;
+    & > *{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        vertical-align: top;
+        width: inherit;
+        text-align: center;
+    }
+    & .user-photo{
+        & img{
+            display: inline;
+        }
+    }
+     & .user-info{
+    }
+    border-bottom: 2px solid #234874;
+    margin-bottom: 10px;
+}
