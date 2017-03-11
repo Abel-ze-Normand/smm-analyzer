@@ -39,7 +39,7 @@
 				</span>
 				<br>
 				<span class="user-fio">
-					<%=@current_user[:name]%>
+					<%= @current_user.name if @current_user %>
 				</span>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 </html>
 
 <script>
-	// @todo узнать как раскидать js код 
+	// @todo узнать как раскидать js код
 	$(document).ready(function(){
 		$('.btn-left-menu-collapse').click(function(){
 			$('#left-sidebar').toggleClass('left-sidebar--hide');
