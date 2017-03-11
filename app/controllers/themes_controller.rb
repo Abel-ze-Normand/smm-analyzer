@@ -10,9 +10,13 @@ class ThemesController < ApplicationController
     service_result = CreateThemeService.new(strong_theme_params).call
     unless service_result.successful?
       @theme = service_result.result
-      render action: :new and return
+      respond_to do |f|
+        f.html { render "dashboard/index"}
+        f.js
+      end
+    else
+      redirect_to dashboard_path
     end
-    redirect_to dashboard_path
   end
 
   def index

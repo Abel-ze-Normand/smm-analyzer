@@ -34,6 +34,7 @@ gem 'twitter-bootstrap-rails'
 gem 'pry-rails'
 gem 'pry-doc'
 gem 'active_job_status'
+# gem 'reqsue'
 ###################
 
 ##### FRONT_END ####
