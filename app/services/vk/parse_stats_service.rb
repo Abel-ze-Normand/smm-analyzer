@@ -6,13 +6,17 @@ module Vk
     end
 
     def call
-      @stats.map do |stat|
-        s = cons_group_stat(stat)
-        a_c = cons_age_cluster(stat)
-        a_c.save!
-        s.group = Group.find(@group_id)
-        s.age_cluster = a_c
-        s.save!
+      ::GroupStat.transaction do
+        ::AgeCluster.transaction do
+          @stats.map do |stat|
+            s = cons_group_stat(stat)
+            s.group = Group.find(@group_id)
+            s.save!
+            a_c = cons_age_cluster(stat)
+            a_c.group_stat = s
+            a_c.save!
+          end
+        end
       end
     end
 

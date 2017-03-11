@@ -10,6 +10,7 @@ FactoryGirl.define do
 
   factory :theme do
     name "test_theme"
+    hashtag "test_hashtag"
     group
   end
 

@@ -57,8 +57,8 @@ RSpec.describe Vk::FullProcessPostsService do
   subject { ->(options) { described_class.new(options).call }}
   it {
     expect(subject.call(options)).to satisfy { |group_posts|
-      group_posts.reduce(true) { |acc, post|
-        acc && post.errors.empty?
+      group_posts.reduce(true) { |acc, is_save_successful|
+        acc && is_save_successful
       }
     }
   }

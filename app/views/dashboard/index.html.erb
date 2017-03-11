@@ -90,10 +90,10 @@ id="group-tab-item-<%= group.id %>" >
 	      </div>
 	      <div class="form-group">
                 <div class="col-sm-4">
-                  <%= link_to "Инициализация постов", load_posts_path(group_id: group.id), class: "btn btn-info btn-sm" %>
+                  <%= link_to "Инициализация постов", test_load_posts_path(group_id: group.id), class: "btn btn-info btn-sm" %>
                 </div>
                 <div class="col-sm-4">
-                  <%= link_to "Инициализация стат.", load_stats_path(group_id: group.id), class: "btn btn-info btn-sm" %>
+                  <%= link_to "Инициализация стат.", test_load_stats_path(group_id: group.id), class: "btn btn-info btn-sm" %>
                 </div>
                 <div class="col-sm-4">
                   <%= link_to "Сканировать", "#", class: "btn btn-info btn-sm" %>
@@ -144,7 +144,7 @@ id="group-tab-item-<%= group.id %>" >
 	    <% @theme = Theme.new %>
 	    <%= form_for [group, @theme], html: { class: "form-horizontal" }, remote: true do |f| %>
  	      <%= f.hidden_field :id %>
- 	      <%= f.hidden_field :group_id, :value => group.id%>
+ 	      <%= f.hidden_field :group_id, :value => group.id %>
 
               <div id="theme-form-errors">
               </div>

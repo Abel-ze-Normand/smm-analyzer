@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get "/load_stats", to: "stats#load_stats", as: :load_stats
   get "/load_posts", to: "posts#load_posts", as: :load_posts
 
+  # REMOVE
+  get "/test_load_stats", to: "stats#test_load_stats", as: :test_load_stats
+  get "/test_load_posts", to: "posts#test_load_posts", as: :test_load_posts
+  #
+
   resources :groups, only: [:create, :show], shallow: true do
     resources :stats, only: [:index]
     resources :themes, only: [:new, :create, :index, :destroy]

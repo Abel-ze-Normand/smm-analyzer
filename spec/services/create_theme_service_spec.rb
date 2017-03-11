@@ -6,7 +6,8 @@ RSpec.describe CreateThemeService do
     {
       id: nil,
       name: "test",
-      group_id: group.id
+      group_id: group.id,
+      hashtag: "hashtag"
     }
   }
   let(:invalid_params) {

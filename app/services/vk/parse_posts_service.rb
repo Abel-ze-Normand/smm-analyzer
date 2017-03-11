@@ -7,7 +7,7 @@ module Vk
 
     def call
       @raw_posts.map do |r_p|
-        GroupPost.new(**cons_group_post(r_p))
+        GroupPost.new(**cons_group_post(r_p)).save!
       end
     end
 
