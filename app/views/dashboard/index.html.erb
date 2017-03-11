@@ -76,7 +76,7 @@ id="group-tab-item-<%= group.id %>" >
 		        <td><%= theme.id %></td>
 		        <td><%= theme.name %> (#<%= theme.hashtag %>)</td>
 		        <td>
-                          <%= button_to theme_path(theme), method: :delete, html: { "class" => "btn btn-danger btn-xs center-block", "data-toggle" => "modal" } do %>
+                          <%= button_to theme_path(theme), method: :delete, class: "btn btn-danger btn-xs center-block", data: { toggle:  "modal" } do %>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                           <% end %>
 			  <!-- <button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
@@ -89,12 +89,21 @@ id="group-tab-item-<%= group.id %>" >
 		</table>
 	      </div>
 	      <div class="form-group">
-		<div class="col-sm-offset-6 col-sm-6">
-		  <%= form_tag load_stats_path, :method => :get do %>
-		    <%= hidden_field :params, :group_id, :value => group.id %>
-		    <%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
-		  <% end %>
-		</div>
+                <div class="col-sm-4">
+                  <%= link_to "Инициализация постов", load_posts_path(group_id: group.id), class: "btn btn-info btn-sm" %>
+                </div>
+                <div class="col-sm-4">
+                  <%= link_to "Инициализация стат.", load_stats_path(group_id: group.id), class: "btn btn-info btn-sm" %>
+                </div>
+                <div class="col-sm-4">
+                  <%= link_to "Сканировать", "#", class: "btn btn-info btn-sm" %>
+                </div>
+		<!-- <div class="col-sm-offset-6 col-sm-6">
+		     <%= form_tag load_stats_path, :method => :get do %>
+		     <%= hidden_field :params, :group_id, :value => group.id %>
+		     <%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
+		     <% end %>
+		     </div> -->
 	      </div>
 	    </div>
 	  </div>
