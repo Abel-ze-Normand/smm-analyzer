@@ -3,8 +3,6 @@ class PostsController < ApplicationController
     Vk::StartPostsJobService.new(
       group_id: params[:group_id],
       access_token: session[:access_token],
-      loader: Vk::LoadPostsService,
-      parser: Vk::ParsePostsService,
     ).call
     redirect_to dashboard_path
   end

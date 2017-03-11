@@ -1,6 +1,8 @@
+require "resque/server"
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "static_pages#index"
+  mount Resque::Server.new, at: "/resque"
   get "/login", to: "auth#login", as: :login
   get "/auth", to: "auth#auth", as: :auth
   get "/fix_auth", to: "auth#fix_auth", as: :fix_auth
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   get "/test_load_posts", to: "posts#test_load_posts", as: :test_load_posts
   #
 
-  resources :groups, only: [:create, :show], shallow: true do
+  resources :groups, only: [:create, :show, :destroy], shallow: true do
     resources :stats, only: [:index]
     resources :themes, only: [:new, :create, :index, :destroy]
   end

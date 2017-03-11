@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/sinatra/sinatra.git
+  revision: bbdc7225a43c20f8c21afcf06f6233d895a606c7
+  specs:
+    rack-protection (2.0.0.rc1)
+      rack
+    sinatra (2.0.0.rc1)
+      mustermann (= 1.0.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0.rc1)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,6 +131,7 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    mustermann (1.0.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     nio4r (1.2.1)
@@ -198,8 +211,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sinatra (1.0)
-      rack (>= 1.0)
     slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -272,6 +283,7 @@ DEPENDENCIES
   resque
   rspec-rails
   sass-rails (~> 5.0)
+  sinatra!
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

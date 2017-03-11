@@ -7,9 +7,6 @@ class StatsController < ApplicationController
       # leave it for datepicker
       date_from: "1970-01-01",
       date_to: "2017-01-01",
-      loader: Vk::LoadStatsService,
-      parser: Vk::ParseStatsService,
-      analyzer: Vk::StatsAnalyzerService
     ).call
     redirect_to dashboard_path
   end

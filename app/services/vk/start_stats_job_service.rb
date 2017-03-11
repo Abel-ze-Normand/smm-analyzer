@@ -7,8 +7,8 @@ module Vk
 
     def call
       group = Group.find(@group_id)
-      job = LoadGroupStatsJob.perform_later(@options)
-      group.update_attributes(stat_job_status: "running", stat_job_id: job.job_id)
+      Resque.enqueue(LoadGroupStatsJob, @options)
+      group.update_attributes(stat_job_status: "running")
     end
   end
 end

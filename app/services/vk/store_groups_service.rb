@@ -7,11 +7,15 @@ module Vk
     end
 
     def call
-      @raw_data = @groups_loader.call
+      @raw_data = load_groups
       store_groups_in_db
     end
 
     private
+
+    def load_groups
+      @groups_loader.new(@options).call
+    end
 
     def store_groups_in_db
       case @options[:action]

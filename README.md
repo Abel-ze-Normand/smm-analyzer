@@ -36,6 +36,32 @@ After ruby installation install rails libraries with:
 gem install rails
 ```
 
+### Async job processing backend
+at first you have to install Redis. on MacOS:
+
+```bash
+brew install redis
+```
+
+now run redis alongside with rails server:
+
+```bash
+redis-server
+```
+
+now you can start rails server as usual
+
+but it's not enough! you have to run async workers to eat async jobs:
+
+```bash
+QUEUE=default bundle exec rake environment resque:work
+```
+
+so you have to keep 3 processes alive to work right:
+* Rails server
+* Redis server
+* resque worker
+
 ## Initial setup
 after ruby and rails installation move to project path and load dependencies:
 ```bash
