@@ -1,11 +1,15 @@
 class AuthController < ApplicationController
-  layout "login", only: [:login]
+  # FIXME not working?
+  # layout "login", only: [:login, :logout]
+  layout "", only: [:auth]
   def login
     redirect_to dashboard_path and return if user_logged?
     @auth_path = Vk::PreAuthenticatorService.new.call
+    render layout: "login"
   end
 
   def auth
+    render layout: "login"
   end
 
   def fix_auth
