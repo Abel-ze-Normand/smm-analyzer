@@ -1,262 +1,260 @@
 <ul class="nav nav-tabs" id="myGroups">
-	<% @users_added_group_list.each.with_index do |group, index| %>
-	<li role="presentation"
-	<% if index == 0 %>
-	class="active"
-	<% end %>
-	>
-	<a href="#group-tab-item-<%= group.id %>"
-		role="tab"
-		data-toggle="tab"
-		index="<%= index %>"
-		><%=group.name %></a>
-	</li>
-	<% end %>
-	<li role="presentation"><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
+  <% @users_added_group_list.each.with_index do |group, index| %>
+    <li role="presentation"
+<% if index == 0 %>
+class="active"
+<% end %>
+    >
+      <a href="#group-tab-item-<%= group.id %>"
+role="tab"
+data-toggle="tab"
+index="<%= index %>"
+      ><%=group.name %></a>
+    </li>
+  <% end %>
+  <li role="presentation"><a href="#tab-add-group" role="tab" data-toggle="tab" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content tab-groups">
-	<!-- Tab add group -->
-	<div role="tabpanel" class="tab-pane" id="tab-add-group">
-		<%= form_tag groups_path do |f| %>
-		<span>Список групп пользователя</span>
-		<div class="row">
-			<div class="col-md-10">
-				<%= select_tag :group_id, options_from_collection_for_select(@users_vk_group_list, :id, :name) %>
-			</div>
-			<div class="col-md-2">
-				<%= submit_tag "Добавить", class: "btn btn-success btn-sm"%>
-			</div>
-		</div>
-		<br>
-		<% end %>
+  <!-- Tab add group -->
+  <div role="tabpanel" class="tab-pane" id="tab-add-group">
+    <%= form_tag groups_path do |f| %>
+      <span>Список групп пользователя</span>
+      <div class="row">
+	<div class="col-md-10">
+	  <%= select_tag :group_id, options_from_collection_for_select(@users_vk_group_list, :id, :name) %>
 	</div>
-	<!-- / Tab add group -->
-
-	<% @users_added_group_list.each.with_index do |group, index| %>
-	<div role="tabpanel"
-	class="tab-pane <% if index == 0 %>active<% end %>"
-	id="group-tab-item-<%= group.id %>" >
-	<div class="row">
-		<div class="col-md-6 group-info-elem group-info">
-			<h3 class="text-center">Информация о группе</h3>
-			<ul>
-				<li>ID: <span><%= group.id %></span></li>
-				<li>Название: <span><%= group.name %></span></li>
-			</ul>
-		</div>
-		<div class="col-md-6 group-info-elem group-settings">
-			<h3 class="text-center">Настройки сбора статистики</h3>
-			<!--@TODO Добавить action -->
-			<div class="form-horizontal">
-				<div class="form-group">
-					<div class="form-group">
-						<div class="col-md-6">
-							<label for="inputEmail3" class="control-label">Выбор категорий</label>
-						</div >
-						<div class="col-md-6">
-						<button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addCategory-<%=group.id%>" data-groupId="<%= group.id %>">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</button>
-						</div>
-					</div>
-					<div class="col-md-12  table-responsive">		    
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th width="20%">Номер</th>
-									<th width="60%">Название</th>
-									<th width="20%">Удалить</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Кошечки</td>
-									<td>
-										<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Песики</td>
-									<td>
-										<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Слоники</td>
-									<td>
-										<button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-6 col-sm-6">
-							<%= form_tag load_stats_path, :method => :get do %>
-									<%= hidden_field :params, :group_id, :value => group.id %>
-									<%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
-							<% end %>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="col-md-2">
+	  <%= submit_tag "Добавить", class: "btn btn-success btn-sm"%>
 	</div>
-	<div class="row">
-		<div class="col-md-12 group-info-elem group-statistic">
-			<h3 class="text-center">Статистика</h3>
-			<div class="graphics-view">
-				<!--Добавить grup.id-->
-				<svg id="statistic" class="statistic-demo" width="800" height="300"></svg>
-			</div>
-		</div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+  <!-- / Tab add group -->
 
+  <% @users_added_group_list.each.with_index do |group, index| %>
+    <div role="tabpanel"
+class="tab-pane <% if index == 0 %>active<% end %>"
+id="group-tab-item-<%= group.id %>" >
+      <div class="row">
+	<div class="col-md-6 group-info-elem group-info">
+	  <h3 class="text-center">Информация о группе</h3>
+	  <ul>
+	    <li>ID: <span><%= group.id %></span></li>
+	    <li>Название: <span><%= group.name %></span></li>
+	  </ul>
+	</div>
+	<div class="col-md-6 group-info-elem group-settings">
+	  <h3 class="text-center">Настройки сбора статистики</h3>
+	  <!--@TODO Добавить action -->
+	  <div class="form-horizontal">
+	    <div class="form-group">
+	      <div class="form-group">
+		<div class="col-md-6">
+		  <label for="inputEmail3" class="control-label">Выбор категорий</label>
+		</div >
+		<div class="col-md-6">
+		  <button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addCategory-<%=group.id%>" data-groupId="<%= group.id %>">
+		    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  </button>
+		</div>
+	      </div>
+	      <div class="col-md-12  table-responsive">
+		<table class="table table-bordered">
+		  <thead>
+		    <tr>
+		      <th width="20%">Номер</th>
+		      <th width="60%">Название</th>
+		      <th width="20%">Удалить</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+                    <% group.themes.each do |theme| %>
+                      <tr>
+		        <td><%= theme.id %></td>
+		        <td><%= theme.name %> (#<%= theme.hashtag %>)</td>
+		        <td>
+                          <%= button_to theme_path(theme), method: :delete, html: { "class" => "btn btn-danger btn-xs center-block", "data-toggle" => "modal" } do %>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          <% end %>
+			  <!-- <button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
+			       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			       </button> -->
+		        </td>
+		      </tr>
+                    <% end %>
+		  </tbody>
+		</table>
+	      </div>
+	      <div class="form-group">
+		<div class="col-sm-offset-6 col-sm-6">
+		  <%= form_tag load_stats_path, :method => :get do %>
+		    <%= hidden_field :params, :group_id, :value => group.id %>
+		    <%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
+		  <% end %>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-md-12 group-info-elem group-statistic">
+	  <h3 class="text-center">Статистика</h3>
+	  <div class="graphics-view">
+	    <!--Добавить grup.id-->
+	    <svg id="statistic" class="statistic-demo" width="800" height="300"></svg>
+	  </div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12 group-info-elem group-result">
-			<h3 class="text-center">Результат</h3>
-			<div class="graphics-view">
-				Котики
-			</div>
-		</div>
+      </div>
+
+      <div class="row">
+	<div class="col-md-12 group-info-elem group-result">
+	  <h3 class="text-center">Результат</h3>
+	  <div class="graphics-view">
+	    Котики
+	  </div>
 	</div>
+      </div>
+    </div>
+
+    <!--Forms -->
+    <!-- Modal -->
+    <div id="addCategory-<%=group.id%>" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+	<!-- Modal content-->
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h4 class="modal-title">Добавить категорию</h4>
+	  </div>
+	  <div class="modal-body">
+	    <%@theme = Theme.new%>
+	    <%= form_for [group, @theme], html: { class: "form-horizontal" } do |f| %>
+ 	      <%= f.hidden_field :id %>
+ 	      <%= f.hidden_field :group_id, :value => group.id%>
+
+ 	      <% if @theme.errors.present? %>
+ 		<div class="alert alert-warning">
+ 		  <ul>
+ 		    <% @theme.errors.full_messages.each do |e| %>
+ 		      <li><%= e %></li>
+ 		    <% end %>
+ 		  </ul>
+ 		</div>
+ 	      <% end %>
+	      <div class="form-group">
+                <div clas="form-group">
+		  <div class="col-md-12">
+		    <label for="inputEmail3" class=" control-label">Создать и добавить</label>
+		  </div>
+                </div>
+                <div class="form-group">
+		  <div class="col-md-12">
+		    <%= f.text_field :name, class: "form-control", placeholder: "Название" %>
+		  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <%= f.text_field :hashtag, class: "form-control", placeholder: "Хэштег" %>
+                  </div>
+                </div>
+                <div class="form-group">
+		  <div class="col-md-121">
+		    <%= f.submit "Готово", class: "btn btn-default btn-sm" %>
+		  </div>
+                </div>
+	      </div>
+	    <% end %>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+
+	  </div>
+	</div>
+      </div>
+    </div>
+    <!--/Forms -->
+  <% end %>
+
 </div>
 
-<!--Forms -->
-<!-- Modal -->
-<div id="addCategory-<%=group.id%>" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Добавить категорию</h4>
-			</div>
-			<div class="modal-body">
-				<%@theme = Theme.new%>
-				<%= form_for [group, @theme], html: { class: "form-horizontal" } do |f| %>
- 				<%= f.hidden_field :id %>
- 				<%= f.hidden_field :group_id, :value => group.id%>
-
- 				<% if @theme.errors.present? %>
- 				<div class="alert alert-warning">
- 					<ul>
- 						<% @theme.errors.full_messages.each do |e| %>
- 						<li><%= e %></li>
- 						<% end %>
- 					</ul>
- 				</div>
- 				<% end %>
-					<div class="form-group">
-					<div class="col-md-4">
-						<label for="inputEmail3" class=" control-label">Создать и добавить</label>
-					</div>
-					<div class="col-md-6">
-						<%= f.text_field :name, class: "form-control", placeholder: "Название" %>
-					</div>
-					<div class="col-md-2">
-						<%= f.submit "Готово", class: "btn btn-default btn-sm" %>
-					</div>
-					</div>
-				<% end %>	
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-
-			</div>
-		</div>
-	</div>
-</div>
-<!--/Forms -->
-<% end %>
-
-</div>
- 
- <script>
- 	$('#myGroups a').click(function (e) {
- 		e.preventDefault();
- 		$(this).tab('show');
- 	});
- 	$('#addCategory').on('show.bs.modal', function (e) {
- 		//var modal = $(this);
- 		//var button = $(e.relatedTarget); // Button that triggered the modal
-  		//var groupId = button.data('groupid');
-  		//modal.find('#theme_group_id').val(groupId);
-  		/**
-  		 * @todo проверки на существование 
-  		 */
-	});
- 	function myFunction(k) {
- 		alert(k.length);
- 		if(k.length > 0)
- 		{
- 			var x = document.getElementById("select-categories");
- 			var option = document.createElement("option");
- 			option.text = k;
- 			x.add(option);
- 		}
- 	}
+<script>
+ $('#myGroups a').click(function (e) {
+   e.preventDefault();
+   $(this).tab('show');
+ });
+ $('#addCategory').on('show.bs.modal', function (e) {
+   //var modal = $(this);
+   //var button = $(e.relatedTarget); // Button that triggered the modal
+   //var groupId = button.data('groupid');
+   //modal.find('#theme_group_id').val(groupId);
+   /**
+    * @todo проверки на существование
+    */
+ });
+ function myFunction(k) {
+   alert(k.length);
+   if(k.length > 0)
+     {
+       var x = document.getElementById("select-categories");
+       var option = document.createElement("option");
+       option.text = k;
+       x.add(option);
+     }
+ }
 </script>
 <!-- D3 -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
  //@todo Сделать инициализацию
  $(document).ready(function(){
- 	var svg = d3.select(".statistic-demo"),
- 	margin = {top: 20, right: 20, bottom: 30, left: 40},
- 	width = +svg.attr("width") - margin.left - margin.right,
- 	height = +svg.attr("height") - margin.top - margin.bottom;
+   var svg = d3.select(".statistic-demo"),
+       margin = {top: 20, right: 20, bottom: 30, left: 40},
+       width = +svg.attr("width") - margin.left - margin.right,
+       height = +svg.attr("height") - margin.top - margin.bottom;
 
- 	var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
- 	y = d3.scaleLinear().rangeRound([height, 0]);
+   var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+       y = d3.scaleLinear().rangeRound([height, 0]);
 
- 	var g = svg.append("g")
- 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   var g = svg.append("g")
+ 	      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
- 	d3.tsv("data.tsv", function(d) {
- 		d.frequency = +d.frequency;
- 		return d;
- 	}, function(error, data) {
- 		if (error) throw error;
+   d3.tsv("data.tsv", function(d) {
+     d.frequency = +d.frequency;
+     return d;
+   }, function(error, data) {
+     if (error) throw error;
 
- 		x.domain(data.map(function(d) { return d.letter; }));
- 		y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+     x.domain(data.map(function(d) { return d.letter; }));
+     y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
- 		g.append("g")
- 		.attr("class", "axis axis--x")
- 		.attr("transform", "translate(0," + height + ")")
- 		.call(d3.axisBottom(x));
+     g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
 
- 		g.append("g")
- 		.attr("class", "axis axis--y")
- 		.call(d3.axisLeft(y).ticks(10, "%"))
- 		.append("text")
- 		.attr("transform", "rotate(-90)")
- 		.attr("y", 6)
- 		.attr("dy", "0.71em")
- 		.attr("text-anchor", "end")
- 		.text("Frequency");
+     g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
 
- 		g.selectAll(".bar")
- 		.data(data)
- 		.enter().append("rect")
- 		.attr("class", "bar")
- 		.attr("x", function(d) { return x(d.letter); })
- 		.attr("y", function(d) { return y(d.frequency); })
- 		.attr("width", x.bandwidth())
- 		.attr("height", function(d) { return height - y(d.frequency); });
- 	});
+     g.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.frequency); });
+   });
  });
 </script>

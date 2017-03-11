@@ -29,6 +29,6 @@ class ThemesController < ApplicationController
   private
 
   def strong_theme_params
-    params.require(:theme).permit(:id, :name, :group_id)
+    params.require(:theme).permit(:id, :name, :group_id, :hashtag)
   end
 end
