@@ -146,16 +146,9 @@ id="group-tab-item-<%= group.id %>" >
  	      <%= f.hidden_field :id %>
  	      <%= f.hidden_field :group_id, :value => group.id%>
 
-              <div id="theme-form-errors"></div>
- 	      <% if @theme.errors.present? %>
- 		<div class="alert alert-warning">
- 		  <ul>
- 		    <% @theme.errors.full_messages.each do |e| %>
- 		      <li><%= e %></li>
- 		    <% end %>
- 		  </ul>
- 		</div>
- 	      <% end %>
+              <div id="theme-form-errors">
+              </div>
+
 	      <div class="form-group">
                 <div clas="form-group">
 		  <div class="col-md-12">
