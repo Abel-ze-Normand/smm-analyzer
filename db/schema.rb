@@ -13,14 +13,14 @@
 ActiveRecord::Schema.define(version: 20170310182012) do
 
   create_table "age_clusters", force: :cascade do |t|
-    t.integer "from_12_to_18_count"
-    t.integer "from_18_to_21_count"
-    t.integer "from_21_to_24_count"
-    t.integer "from_24_to_27_count"
-    t.integer "from_27_to_30_count"
-    t.integer "from_30_to_35_count"
-    t.integer "from_35_to_45_count"
-    t.integer "from_45_to_100_count"
+    t.integer "from_12_to_18_count",  default: 0
+    t.integer "from_18_to_21_count",  default: 0
+    t.integer "from_21_to_24_count",  default: 0
+    t.integer "from_24_to_27_count",  default: 0
+    t.integer "from_27_to_30_count",  default: 0
+    t.integer "from_30_to_35_count",  default: 0
+    t.integer "from_35_to_45_count",  default: 0
+    t.integer "from_45_to_100_count", default: 0
     t.integer "group_stat_id"
     t.index ["group_stat_id"], name: "index_age_clusters_on_group_stat_id"
   end

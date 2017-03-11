@@ -10,11 +10,12 @@ module Vk
         ::AgeCluster.transaction do
           @stats.map do |stat|
             s = cons_group_stat(stat)
-            s.group = Group.find(@group_id)
+            s.group = ::Group.find(@group_id)
             s.save!
             a_c = cons_age_cluster(stat)
             a_c.group_stat = s
             a_c.save!
+            s
           end
         end
       end
@@ -41,7 +42,8 @@ module Vk
       # "value": "18-21"
       # }
       age_list = stat["age"]
-      age_list.reduce(AgeCluster.new) do |a_c, age_dict|
+      return ::AgeCluster.new unless age_list
+      age_list.reduce(::AgeCluster.new) do |a_c, age_dict|
         from_v, to_v = age_dict["value"].split('-')
         views = age_dict["visitors"]
         a_c.send("from_#{from_v}_to_#{to_v}_count=".to_s, views)
