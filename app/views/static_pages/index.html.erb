@@ -5,6 +5,15 @@
 				<div class="promo-header_menu">
 					<ul class="promo-menu">
 						<li class="promo-menu_item is-scroll">
+							<a class="promo-menu_link" href="#begin">Начало</a>
+						</li>
+						<li class="promo-menu_item is-scroll">
+							<a class="promo-menu_link" href="#features">Возможности</a>
+						</li>
+						<li class="promo-menu_item is-scroll">
+							<a class="promo-menu_link" href="#beta">Пробная версия</a>
+						</li>
+						<li class="promo-menu_item is-scroll">
 							<a class="promo-menu_link" href="#price">Цены</a>
 						</li>
 					</ul>
@@ -26,7 +35,7 @@
 				<p class="promo-help_side">По правилам Вконтакте, чтобы подключить корпоративную страницу,сначала войдите через личный аккаунт.</p>
 			</div>
 		</div>
-		<section class="promo-page_section is-main">
+		<section class="promo-page_section is-main" id="begin">
 			<div class="promo-page_body" >
 				<div class="promo-page_text">
 					<div class="promo-text is-white is-shadow">
@@ -36,7 +45,7 @@
 			</div>
 			<footer class="promo-page_footer"></footer>
 		</section>
-		<section class="promo-page_section is-feature">
+		<section class="promo-page_section is-feature1"  id="features">
 			<div class="promo-page_body">
 				<div class="promo-page_text">
 					<div class="promo-text is-red">
@@ -47,7 +56,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="promo-page_section is-feature">
+		<section class="promo-page_section is-feature2" id="beta">
 			<div class="promo-page_body">
 				<div class="promo-page_text">
 					<div class="promo-text is-red">
@@ -74,12 +83,12 @@
 		<section class="promo-page_section is-feedback">
 			<div class="promo-page_body">
 				<div class="promo-page_text">
-								<div class="promo-text_quote">Подключили наш социальный аккаунт к SMMTool-у и с интересом следим за статистикой групп. Выявили посты, которые бесят аудиторию и вызывают отписки — больше не ошибаемся</div>
-							<cite class="promo-text_note">
-								<span class="promo-text_author">Андрей Муллагалиев</span>
-								<span class="promo-text_role">Создатель</span>
-							</cite>
-					</div>
+						<div class="promo-text_quote">Подключили наш социальный аккаунт к SMMTool-у и с интересом следим за статистикой групп. Выявили посты, которые бесят аудиторию и вызывают отписки — больше не ошибаемся
+						</div>
+						<cite class="promo-text_note">
+							<span class="promo-text_author">Андрей Муллагалиев</span>
+							<span class="promo-text_role">Создатель</span>
+						</cite>
 				</div>
 			</div>
 		</section>
@@ -140,3 +149,20 @@
 		</section>
 	</div>
 </article>
+
+<script type="text/javascript">
+	$(function() {
+	  $('a[href*="#"]:not([href="#"])').click(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	      var target = $(this.hash);
+	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	      if (target.length) {
+	        $('html, body').animate({
+	          scrollTop: target.offset().top
+	        }, 1000);
+	        return false;
+	      }
+	    }
+	  });
+	});
+</script>
