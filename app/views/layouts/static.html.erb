@@ -5,17 +5,8 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-    	.form form {
-		  width: 300px;
-		  margin: 0 auto;
-		  padding-top: 20px;
-		}
-    </style>
   </head>
   <body>
-  	<div class="form">
-  			<%= yield %>
-	  </div><!-- form  -->
+  	<%= yield %>
   </body>
 </html>
