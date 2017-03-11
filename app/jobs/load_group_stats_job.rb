@@ -1,8 +1,7 @@
-class LoadGroupStatsJob < ApplicationJob
-  include ActiveJobStatus::Hooks
-  queue_as :default
+class LoadGroupStatsJob
+  @queue = :default
 
-  def perform(options = {})
+  def self.perform(options = {})
     group_id = options.fetch(:group_id)
     Vk::FullProcessStatsService.new(options).call
     unlock_group(group_id)

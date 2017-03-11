@@ -1,7 +1,7 @@
-class LoadPostsJob < ApplicationJob
-  queue_as :default
+class LoadPostsJob
+  @queue = :default
 
-  def perform(options = {})
+  def self.perform(options = {})
     group_id = options.fetch(:group_id)
     Vk::FullProcessPostsService.new(options).call
     unlock_group(group_id)

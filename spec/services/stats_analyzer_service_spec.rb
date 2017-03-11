@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe StatsAnalyzerService do
+RSpec.describe Vk::StatsAnalyzerService do
   let!(:group) { create(:group) }
   let!(:stats) {
     [
