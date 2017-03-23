@@ -3,6 +3,7 @@ module Vk
     def initialize(options = {})
       @options = options
       @user_id = options.fetch(:user_id)
+      @action = options.fetch(:action)
       @groups_loader = options.fetch(:groups_loader)
     end
 
@@ -18,7 +19,7 @@ module Vk
     end
 
     def store_groups_in_db
-      case @options[:action]
+      case @action
       when :one
         store_one_group
       when :many
