@@ -1,3 +1,4 @@
+include DescriptiveStatistics
 class CalculateThemeStatsService
   def initialize(options = {})
     @theme = options.fetch(:theme)
@@ -24,26 +25,26 @@ class CalculateThemeStatsService
   end
 
   def calc_mean_likes
-    @theme.stat_mean_likes = DescriptiveStatistics.mean(@likes)
+    @theme.stat_mean_likes = mean(@likes)
   end
 
   def calc_var_likes
-    @theme.stat_var_likes = DescriptiveStatistics.variance(@likes)
+    @theme.stat_var_likes = variance(@likes)
   end
 
   def calc_mean_reposts
-    @theme.stat_mean_reposts = DescriptiveStatistics.mean(@reposts)
+    @theme.stat_mean_reposts = mean(@reposts)
   end
 
   def calc_var_reposts
-    @theme.stat_var_reposts = DescriptiveStatistics.variance(@reposts)
+    @theme.stat_var_reposts = variance(@reposts)
   end
 
   def calc_mean_views
-    @theme.stat_mean_views = DescriptiveStatistics.mean(@views)
+    @theme.stat_mean_views = mean(@views)
   end
 
   def calc_var_views
-    @theme.stat_var_views = DescriptiveStatistics.variance(@views)
+    @theme.stat_var_views = variance(@views)
   end
 end
