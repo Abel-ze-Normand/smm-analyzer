@@ -7,6 +7,10 @@ class Theme < ApplicationRecord
 
   def get_stats
     return render_stats if stats_mean_likes
+    refresh_stats
+  end
+
+  def refresh_stats
     CalculateThemeStatsService.new(theme: self).call
     render_stats
   end
@@ -20,5 +24,21 @@ class Theme < ApplicationRecord
       mean_views: stat_mean_views,
       var_views: stat_var_views
     }
+  end
+
+  def stats_likes_converged
+    stat_mean_likes - Math.sqrt(stat_var_likes)
+  end
+
+  def stats_reposts_converged
+    stat_mean_reposts - Math.sqrt(stat_var_reposts)
+  end
+
+  def stats_views_converged
+    stat_mean_reposts - Math.sqrt(stat_var_views)
+  end
+
+  def stats_accumulated
+    stats_likes_converged + 1.5 * stats_reposts_converged + 0.5 * stats_views_converged
   end
 end

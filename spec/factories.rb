@@ -9,8 +9,10 @@ FactoryGirl.define do
   end
 
   factory :theme do
-    name "test_theme"
-    hashtag "test_hashtag"
+    # name "test_theme"
+    # hashtag "test_hashtag"
+    sequence(:name) { |n| "test_theme#{n}" }
+    sequence(:hashtag) { |h| "test_hashtag#{h}" }
     group
   end
 

@@ -12,6 +12,7 @@ class CalculateThemeStatsService
     calc_var_reposts
     calc_mean_views
     calc_var_views
+    @theme.update_attributes(last_refresh_timestamp: DateTime.now)
     @theme.save!
   end
 

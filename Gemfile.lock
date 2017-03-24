@@ -90,6 +90,8 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     highline (1.7.8)
+    hightop (0.2.0)
+      activerecord
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
@@ -275,6 +277,7 @@ DEPENDENCIES
   descriptive_statistics (~> 2.4.0)
   factory_girl_rails
   font-awesome-rails
+  hightop
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

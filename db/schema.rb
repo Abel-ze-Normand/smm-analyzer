@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324112027) do
+ActiveRecord::Schema.define(version: 20170324152329) do
 
   create_table "age_clusters", force: :cascade do |t|
     t.integer "from_12_to_18_count",  default: 0
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20170324112027) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "group_id"
     t.string   "hashtag"
     t.float    "stat_mean_likes"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170324112027) do
     t.float    "stat_var_reposts"
     t.float    "stat_mean_views"
     t.float    "stat_var_views"
+    t.datetime "last_refresh_timestamp"
     t.index ["group_id"], name: "index_themes_on_group_id"
   end
 

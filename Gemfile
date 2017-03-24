@@ -38,6 +38,7 @@ gem 'sinatra', github: 'sinatra', require: false
 gem 'resque'
 gem 'chartkick'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+gem 'hightop'
 ###################
 
 ##### FRONT_END ####
