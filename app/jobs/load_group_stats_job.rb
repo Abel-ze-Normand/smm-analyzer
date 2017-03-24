@@ -12,6 +12,7 @@ class LoadGroupStatsJob
         analyzer: Vk::StatsAnalyzerService
       )
     ).call
+
     unlock_group(group_id)
   rescue
     lock_group(group_id)

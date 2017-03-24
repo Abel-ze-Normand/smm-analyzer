@@ -4,6 +4,7 @@ class VkClient
   def initialize
     @app_id = 5901765
     @app = VK::Application.new
+    @owner_filter = "all"
   end
 
   def autorized?
@@ -54,11 +55,11 @@ class VkClient
   end
 
   def get_posts(gid)
-    probe = @app.wall.get(owner_id: "-#{gid}", filter: "owner")
+    probe = @app.wall.get(owner_id: "-#{gid}", filter: @owner_filter)
     step = 100
     pages = probe['count'] / step
     (0..pages).reduce([]) do |acc, i|
-      resp = @app.wall.get(owner_id: "-#{gid}", filter: "owner", offset: step * i, count: step)
+      resp = @app.wall.get(owner_id: "-#{gid}", filter: @owner_filter, offset: step * i, count: step)
       acc + resp['items']
     end
   end

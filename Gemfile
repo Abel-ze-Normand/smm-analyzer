@@ -39,6 +39,10 @@ gem 'resque'
 gem 'chartkick'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 gem 'hightop'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 ###################
 
 ##### FRONT_END ####

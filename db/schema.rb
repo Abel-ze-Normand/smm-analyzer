@@ -67,16 +67,16 @@ ActiveRecord::Schema.define(version: 20170324152329) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "group_id"
     t.string   "hashtag"
-    t.float    "stat_mean_likes"
-    t.float    "stat_var_likes"
-    t.float    "stat_mean_reposts"
-    t.float    "stat_var_reposts"
-    t.float    "stat_mean_views"
-    t.float    "stat_var_views"
+    t.float    "stat_mean_likes",        default: 0.0
+    t.float    "stat_var_likes",         default: 0.0
+    t.float    "stat_mean_reposts",      default: 0.0
+    t.float    "stat_var_reposts",       default: 0.0
+    t.float    "stat_mean_views",        default: 0.0
+    t.float    "stat_var_views",         default: 0.0
     t.datetime "last_refresh_timestamp"
     t.index ["group_id"], name: "index_themes_on_group_id"
   end

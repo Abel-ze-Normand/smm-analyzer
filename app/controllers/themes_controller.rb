@@ -30,6 +30,21 @@ class ThemesController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def analyze_popular
+    StartPopularThemesAnalyzerService.new(
+      group_id: params[:group_id],
+      user_id: @current_user.id
+    ).call
+    redirect_to dashboard_path
+  end
+
+  def popular
+    @popular_themes = RetrieveCachedPopularThemesService.new(
+      group_id: params[:group_id],
+      user_id: @current_user.id
+    ).call
+  end
+
   private
 
   def strong_theme_params

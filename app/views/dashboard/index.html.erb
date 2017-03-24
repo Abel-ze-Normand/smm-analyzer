@@ -96,7 +96,10 @@ id="group-tab-item-<%= group.id %>" >
                   <%= link_to "Инициализация стат.", load_stats_path(group_id: group.id), class: dashboard_stats_job_status_class(group) %>
                 </div>
                 <div class="col-sm-4">
-                  <%= link_to "Сканировать", "#", class: "btn btn-info btn-sm" %>
+                  <%= link_to "Сканировать", themes_analyze_popular_path(group_id: group.id), class: "btn btn-info btn-sm" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= link_to "RESULTS", themes_popular_path(group_id: group.id), class: "btn btn-success btn-sm" %>
                 </div>
 		<!-- <div class="col-sm-offset-6 col-sm-6">
 		     <%= form_tag load_stats_path, :method => :get do %>

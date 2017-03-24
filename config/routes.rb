@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/logout", to: "auth#logout", as: :logout
   get "/load_stats", to: "stats#load_stats", as: :load_stats
   get "/load_posts", to: "posts#load_posts", as: :load_posts
+  get "/themes/analyze_popular", to: "themes#analyze_popular", as: :themes_analyze_popular
+  get "/themes/popular", to: "themes#popular", as: :themes_popular
 
   resources :groups, only: [:create, :show, :destroy], shallow: true do
     resources :stats, only: [:index]

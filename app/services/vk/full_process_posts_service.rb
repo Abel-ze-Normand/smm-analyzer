@@ -21,14 +21,14 @@ module Vk
     end
 
     def parse_posts(raw_posts)
-      @parser.new(posts_list: raw_posts, group_id: @group_id).call
+      @parser.new(posts_list: raw_posts, group_id: @group_id, analyzer: @analyzer).call
     end
 
-    def parse_and_save_posts(raw_posts)
-      posts = @parser.new(posts_list: raw_posts, group_id: @group_id, analyzer: @analyzer).call
-      ::GroupPost.transaction do
-        posts.each { |p| p.save! }
-      end
-    end
+    # def parse_and_save_posts(raw_posts)
+    #   posts = @parser.new(posts_list: raw_posts, group_id: @group_id, analyzer: @analyzer).call
+    #   ::GroupPost.transaction do
+    #     posts.each { |p| p.save! }
+    #   end
+    # end
   end
 end

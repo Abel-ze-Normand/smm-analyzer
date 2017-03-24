@@ -1,6 +1,7 @@
 module Vk
   class PostsAnalyzerService
-    HASHTAG_REGEX = /(?<=#)[^#\W]+/
+    #HASHTAG_REGEX = /(?<=#)[^#\W]+/
+    HASHTAG_REGEX = /(?<=#)[[^#\W][[:word:]]]+/
     def initialize(options = {})
       @posts = options.fetch(:posts)
       @group_id = options.fetch(:group_id)
