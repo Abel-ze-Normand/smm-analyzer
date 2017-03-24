@@ -4,4 +4,8 @@ class Theme < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :hashtag
   validates_uniqueness_of :name, scope: [:group_id]
+
+  def get_stats
+
+  end
 end

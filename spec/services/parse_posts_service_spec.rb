@@ -19,6 +19,12 @@ RSpec.describe Vk::ParsePostsService do
         },
         "likes" => {
           "count" => 103
+        },
+        "reposts" => {
+          "count" => 3
+        },
+        "views" => {
+          "count" => 5
         }
       },
       {
@@ -35,6 +41,12 @@ RSpec.describe Vk::ParsePostsService do
         },
         "likes" => {
           "count" => 302
+        },
+        "reposts" => {
+          "count" => 4
+        },
+        "views" => {
+          "count" => 7
         }
       }
     ]

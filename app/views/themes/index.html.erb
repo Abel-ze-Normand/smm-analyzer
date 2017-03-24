@@ -1,0 +1,18 @@
+<table>
+  <th>
+    <td>Theme id</td>
+    <td>Theme name</td>
+    <td>Theme hashtag</td>
+    <td>????</td>
+    <td>????</td>
+  </th>
+  <% @themes.each do |theme| %>
+    <tr>
+      <td><%= theme.id %></td>
+      <td><%= theme.name %></td>
+      <td><%= theme.hashtag %></td>
+      <td>???</td>
+      <td><%= theme.get_stats() %></td>
+    </tr>
+  <% end %>
+</table>

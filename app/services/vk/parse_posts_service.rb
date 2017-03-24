@@ -19,6 +19,7 @@ module Vk
         id: raw_post["id"],
         text: raw_post["text"],
         likes_count: raw_post.dig("likes", "count"),
+        reposts: raw_post.dig("reposts", "count"),
         date: Time.at(raw_post["date"]),
         group_id: @group_id
       }
