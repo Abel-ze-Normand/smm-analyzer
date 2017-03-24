@@ -37,6 +37,7 @@ gem 'active_job_status'
 gem 'sinatra', github: 'sinatra', require: false
 gem 'resque'
 gem 'chartkick'
+gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 ###################
 
 ##### FRONT_END ####

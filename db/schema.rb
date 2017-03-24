@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170324112027) do
 
   create_table "group_posts", force: :cascade do |t|
     t.text     "text"
-    t.integer  "likes_count"
+    t.integer  "likes_count",   default: 0
     t.datetime "date"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
