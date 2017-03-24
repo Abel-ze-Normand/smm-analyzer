@@ -18,7 +18,7 @@ RSpec.describe Vk::StoreGroupsService, "#call" do
     @user = create(:user)
   }
   let(:args) { { user_id: @user.id, action: :one, group_id: 1 } }
-  subject { described_class.new(args.merge(groups_loader: MockLoader.new(args))) }
+  subject { described_class.new(args.merge(groups_loader: MockLoader)) }
 
   it { expect(subject.call).to eq(true) }
   it "should store in database" do

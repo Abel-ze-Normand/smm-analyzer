@@ -8,7 +8,8 @@ class LoadPostsJob
     Vk::FullProcessPostsService.new(
       options.merge(
         loader: Vk::LoadPostsService,
-        parser: Vk::ParsePostsService
+        parser: Vk::ParsePostsService,
+        analyzer: Vk::PostsAnalyzerService
       )
     ).call
     unlock_group(group_id)

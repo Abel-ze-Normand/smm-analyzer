@@ -25,7 +25,7 @@ RSpec.describe Vk::ParsePostsService do
         "id" => 2,
         "date" => 1488400253,
         "text" => %{
-Стартовал приём заявок в зону «Музыка» &#127908;
+Стартовал приём заявок в зону «Музыка»
 
 Если ты начинающий музыкант, у тебя есть своя группа и ты мечтаешь о славе и толпах поклонников, то присылай заявку на участие в VK Fest 2017 и, быть может, именно ты выступишь на крупнейшем open air лета! Приём заявок продлится до 1 мая.
 
@@ -39,8 +39,26 @@ RSpec.describe Vk::ParsePostsService do
       }
     ]
   }
+  let(:options) {
+    {
+      posts_list: example_posts,
+      group_id: @group.id,
+      analyzer: Vk::PostsAnalyzerService
+    }
+  }
 
-  before(:all) { @group = create(:group) }
-  subject { ->(posts) { described_class.new(posts_list: posts, group_id: @group.id).call } }
-  it { expect(subject.call(example_posts)).to eq([true, true]) }
+  before do
+    @group = create(:group)
+    create(:theme, hashtag: "vkfest2016", group_id: @group.id, name: "vkfest2016")
+    create(:theme, hashtag: "vkfest2017", group_id: @group.id, name: "vkfest2017")
+  end
+  subject { ->() { described_class.new(options).call } }
+  it { expect(subject.call()).to eq([true, true]) }
+  it "must attach themes" do
+    subject.call()
+    posts = GroupPost.all
+    expect(posts).to satisfy { |psts| psts.all? { |p| !p.theme.nil? } }
+    expect(posts.first.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2016"))
+    expect(posts.last.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2017"))
+  end
 end

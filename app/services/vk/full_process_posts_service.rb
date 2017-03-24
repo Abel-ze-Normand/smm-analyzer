@@ -11,8 +11,7 @@ module Vk
     def call
       raw_posts = load_posts
       posts = parse_posts(raw_posts)
-      # posts = parse_and_save_posts(raw_posts)
-      analyze(posts)
+      posts
     end
 
     private
@@ -21,17 +20,12 @@ module Vk
       @loader.new(@options).call
     end
 
-    def analyze(posts)
-      return posts unless @analyzer
-      @analyzer.new(posts_list: posts).call
-    end
-
     def parse_posts(raw_posts)
       @parser.new(posts_list: raw_posts, group_id: @group_id).call
     end
 
     def parse_and_save_posts(raw_posts)
-      posts = @parser.new(posts_list: raw_posts, group_id: @group_id).call
+      posts = @parser.new(posts_list: raw_posts, group_id: @group_id, analyzer: @analyzer).call
       ::GroupPost.transaction do
         posts.each { |p| p.save! }
       end
