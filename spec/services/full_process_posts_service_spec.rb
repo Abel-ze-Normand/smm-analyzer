@@ -82,13 +82,14 @@ RSpec.describe Vk::FullProcessPostsService do
   end
 
   context "with analyzer" do
+    before {
+      @group = create(:group)
+      create(:theme, hashtag: "vkfest2016", group_id: @group.id, name: "vkfest2016")
+      create(:theme, hashtag: "vkfest2017", group_id: @group.id, name: "vkfest2017")
+    }
+    subject { ->(options) { described_class.new(options).call }}
 
     context "no_create option" do
-      before {
-        @group = create(:group)
-        create(:theme, hashtag: "vkfest2016", group_id: @group.id, name: "vkfest2016")
-        create(:theme, hashtag: "vkfest2017", group_id: @group.id, name: "vkfest2017")
-      }
       let(:options) {
         {
           loader: MockLoaderVkWall,
@@ -99,7 +100,6 @@ RSpec.describe Vk::FullProcessPostsService do
         }
       }
 
-      subject { ->(options) { described_class.new(options).call }}
       it {
         expect(subject.call(options)).to satisfy { |group_posts|
           # check that first two posts have themes and the last one dont
@@ -114,11 +114,6 @@ RSpec.describe Vk::FullProcessPostsService do
     end
 
     context "create_new option" do
-      before {
-        @group = create(:group)
-        create(:theme, hashtag: "vkfest2016", group_id: @group.id, name: "vkfest2016")
-        create(:theme, hashtag: "vkfest2017", group_id: @group.id, name: "vkfest2017")
-      }
       let(:options) {
         {
           loader: MockLoaderVkWall,
@@ -129,7 +124,6 @@ RSpec.describe Vk::FullProcessPostsService do
         }
       }
 
-      subject { ->(options) { described_class.new(options).call }}
       it {
         expect(subject.call(options)).to satisfy { |group_posts|
           # check that first two posts have themes (they are predefined) and last one should be created dynamic
