@@ -1,9 +1,12 @@
 class ThemesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:edit]
 
   def new
     @group = Group.find(params[:group_id])
     @theme = Theme.new(group_id: @group.id)
+    respond_to do |f|
+      f.js
+    end
   end
 
   def create
@@ -12,6 +15,26 @@ class ThemesController < ApplicationController
       @theme = service_result.result
       respond_to do |f|
         f.html { render "dashboard/index"}
+        f.js
+      end
+    else
+      redirect_to dashboard_path
+    end
+  end
+
+  def edit
+    @theme = Theme.find(params[:id])
+    respond_to do |f|
+      f.js
+    end
+  end
+
+  def update
+    service_result = UpdateThemeService.new(strong_theme_params).call
+    unless service_result.successful?
+      @theme = service_result.result
+      respond_to do |f|
+        f.html { render "dashboard/index" }
         f.js
       end
     else

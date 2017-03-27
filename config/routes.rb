@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   get "/themes/analyze_popular", to: "themes#analyze_popular", as: :themes_analyze_popular
   get "/themes/popular", to: "themes#popular", as: :themes_popular
 
-  resources :groups, only: [:create, :show, :destroy], shallow: true do
+  resources :groups, only: [:create, :show, :destroy, :update] do
     resources :stats, only: [:index]
-    resources :themes, only: [:new, :create, :index, :destroy]
+    resources :themes
   end
 end

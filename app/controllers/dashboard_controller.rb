@@ -6,10 +6,11 @@ class DashboardController < ApplicationController
     context_data = LoadDashboardDataService.new(
       user: @current_user,
       access_token: session[:access_token],
-      entries: [:groups, :vk_groups]
+      entries: [:groups, :vk_groups, :theme]
     ).call
     @users_added_group_list = context_data[:groups]
     @users_vk_group_list = context_data[:vk_groups]
+    @theme = context_data[:theme]
   end
 
   # remove?

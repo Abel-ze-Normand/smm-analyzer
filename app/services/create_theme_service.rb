@@ -5,7 +5,6 @@ class CreateThemeService
 
   def call
     save_theme
-    #produce_result
   end
 
   private

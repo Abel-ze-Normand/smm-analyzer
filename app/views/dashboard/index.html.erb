@@ -1,14 +1,14 @@
 <ul class="nav nav-tabs" id="myGroups">
   <% @users_added_group_list.each.with_index do |group, index| %>
     <li role="presentation"
-<% if index == 0 %>
-class="active"
-<% end %>
+        <% if index == 0 %>
+        class="active"
+        <% end %>
     >
       <a href="#group-tab-item-<%= group.id %>"
-role="tab"
-data-toggle="tab"
-index="<%= index %>"
+         role="tab"
+         data-toggle="tab"
+         index="<%= index %>"
       ><%=group.name %></a>
     </li>
   <% end %>
@@ -36,8 +36,8 @@ index="<%= index %>"
 
   <% @users_added_group_list.each.with_index do |group, index| %>
     <div role="tabpanel"
-class="tab-pane <% if index == 0 %>active<% end %>"
-id="group-tab-item-<%= group.id %>" >
+         class="tab-pane <% if index == 0 %>active<% end %>"
+         id="group-tab-item-<%= group.id %>" >
       <div class="row">
 	<div class="col-md-6 group-info-elem group-info">
 	  <h3 class="text-center">Информация о группе</h3>
@@ -56,38 +56,12 @@ id="group-tab-item-<%= group.id %>" >
 		  <label for="inputEmail3" class="control-label">Выбор категорий</label>
 		</div >
 		<div class="col-md-6">
-		  <button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addCategory-<%=group.id%>" data-groupId="<%= group.id %>">
-		    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		  </button>
+                  <%= button_to new_group_theme_path(group), method: "get", class: "btn btn-success btn-xs pull-right", data: { toggle: "modal", target: "#addCategory-#{group.id}", groupId: group.id }, remote: true do %>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  <% end %>
 		</div>
 	      </div>
-	      <div class="col-md-12  table-responsive">
-		<table class="table table-bordered">
-		  <thead>
-		    <tr>
-		      <th width="20%">Номер</th>
-		      <th width="60%">Название</th>
-		      <th width="20%">Удалить</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-                    <% group.themes.each do |theme| %>
-                      <tr>
-		        <td><%= theme.id %></td>
-		        <td><%= theme.name %> (#<%= theme.hashtag %>)</td>
-		        <td>
-                          <%= button_to theme_path(theme), method: :delete, class: "btn btn-danger btn-xs center-block", data: { toggle:  "modal" } do %>
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                          <% end %>
-			  <!-- <button type="button" class="btn btn-danger btn-xs center-block" data-toggle="modal" data-target="#addCategory">
-			       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-			       </button> -->
-		        </td>
-		      </tr>
-                    <% end %>
-		  </tbody>
-		</table>
-	      </div>
+	      <%= render partial: "themes/list", locals: { group: group } %>
 	      <div class="form-group">
                 <div class="col-sm-4">
                   <%= link_to "Инициализация постов", load_posts_path(group_id: group.id), class: dashboard_posts_job_status_class(group) %>
@@ -101,12 +75,6 @@ id="group-tab-item-<%= group.id %>" >
                 <div class="col-sm-12">
                   <%= link_to "RESULTS", themes_popular_path(group_id: group.id), class: "btn btn-success btn-sm" %>
                 </div>
-		<!-- <div class="col-sm-offset-6 col-sm-6">
-		     <%= form_tag load_stats_path, :method => :get do %>
-		     <%= hidden_field :params, :group_id, :value => group.id %>
-		     <%= submit_tag "Сканировать", class: "btn btn-info btn-sm"%>
-		     <% end %>
-		     </div> -->
 	      </div>
 	    </div>
 	  </div>
@@ -144,41 +112,12 @@ id="group-tab-item-<%= group.id %>" >
 	    <h4 class="modal-title">Добавить категорию</h4>
 	  </div>
 	  <div class="modal-body">
-	    <% @theme = Theme.new %>
-	    <%= form_for [group, @theme], html: { class: "form-horizontal" }, remote: true do |f| %>
- 	      <%= f.hidden_field :id %>
- 	      <%= f.hidden_field :group_id, :value => group.id %>
-
-              <div id="theme-form-errors">
-              </div>
-
-	      <div class="form-group">
-                <div clas="form-group">
-		  <div class="col-md-12">
-		    <label for="inputEmail3" class=" control-label">Создать и добавить</label>
-		  </div>
-                </div>
-                <div class="form-group">
-		  <div class="col-md-12">
-		    <%= f.text_field :name, class: "form-control", placeholder: "Название" %>
-		  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <%= f.text_field :hashtag, class: "form-control", placeholder: "Хэштег" %>
-                  </div>
-                </div>
-                <div class="form-group">
-		  <div class="col-md-121">
-		    <%= f.submit "Готово", class: "btn btn-default btn-sm" %>
-		  </div>
-                </div>
-	      </div>
-	    <% end %>
+            <div id="form-cont-<%= group.id %>">
+              <%= render partial: "themes/form", locals: { group: group } %>
+            </div>
 	  </div>
 	  <div class="modal-footer">
 	    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-
 	  </div>
 	</div>
       </div>

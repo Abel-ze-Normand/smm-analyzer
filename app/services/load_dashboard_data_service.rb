@@ -1,7 +1,8 @@
 class LoadDashboardDataService
   KEYS_DB = {
-    groups: ->(i) { i.get_groups },
-    vk_groups: ->(i) { i.get_vk_groups }
+    groups:    ->(i) { i.get_groups },
+    vk_groups: ->(i) { i.get_vk_groups },
+    theme:    ->(i) { i.get_new_theme }
   }
 
   def initialize(options = {})
@@ -29,5 +30,9 @@ class LoadDashboardDataService
       .new(@options.merge(user_id: @user.id))
       .call
       .reject { |g| @groups_ids.include? g.id }
+  end
+
+  def get_new_theme
+    Theme.new
   end
 end
