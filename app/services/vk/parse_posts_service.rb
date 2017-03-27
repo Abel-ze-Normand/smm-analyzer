@@ -3,13 +3,10 @@ module Vk
     def initialize(options = {})
       @raw_posts = options.fetch(:posts_list)
       @group_id = options.fetch(:group_id)
-      @analyzer = options[:analyzer]
     end
 
     def call
-      posts = @raw_posts.map { |r_p| GroupPost.new(**cons_group_post(r_p)) }
-      posts_analyzed = analyze_posts(posts)
-      posts_analyzed.map { |p| p.save! }
+      @raw_posts.map { |r_p| p = GroupPost.new(**cons_group_post(r_p)); p.save!; p }
     end
 
     private
@@ -23,11 +20,6 @@ module Vk
         date: Time.at(raw_post["date"]),
         group_id: @group_id
       }
-    end
-
-    def analyze_posts(posts)
-      return posts unless @analyzer
-      @analyzer.new(posts: posts, group_id: @group_id).call
     end
   end
 end

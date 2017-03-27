@@ -54,23 +54,24 @@ RSpec.describe Vk::ParsePostsService do
   let(:options) {
     {
       posts_list: example_posts,
-      group_id: @group.id,
-      analyzer: Vk::PostsAnalyzerService
+      group_id: @group.id
     }
   }
 
   before do
     @group = create(:group)
-    create(:theme, hashtag: "vkfest2016", group_id: @group.id, name: "vkfest2016")
-    create(:theme, hashtag: "vkfest2017", group_id: @group.id, name: "vkfest2017")
   end
   subject { ->() { described_class.new(options).call } }
-  it { expect(subject.call()).to eq([true, true]) }
-  it "must attach themes" do
-    subject.call()
-    posts = GroupPost.all
-    expect(posts).to satisfy { |psts| psts.all? { |p| !p.theme.nil? } }
-    expect(posts.first.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2016"))
-    expect(posts.last.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2017"))
-  end
+  it {
+    expect(subject.call()).to satisfy { |posts|
+      posts.all? { |p| !p.id.nil? }
+    }
+  }
+  # it "must attach themes" do
+  #   subject.call()
+  #   posts = GroupPost.all
+  #   expect(posts).to satisfy { |psts| psts.all? { |p| !p.theme.nil? } }
+  #   expect(posts.first.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2016"))
+  #   expect(posts.last.theme).to eq(Theme.find_by(group: @group, hashtag: "vkfest2017"))
+  # end
 end
