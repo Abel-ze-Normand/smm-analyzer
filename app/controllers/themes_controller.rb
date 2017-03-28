@@ -3,14 +3,16 @@ class ThemesController < ApplicationController
 
   def new
     @group = Group.find(params[:group_id])
-    @theme = Theme.new(group_id: @group.id)
+    @theme = themes_repo.new(group_id: @group.id)
+    # @theme = Theme.new(group_id: @group.id)
     respond_to do |f|
       f.js
     end
   end
 
   def create
-    service_result = CreateThemeService.new(strong_theme_params).call
+    # service_result = CreateThemeService.new(strong_theme_params).call
+    service_result = themes_repo.create(strong_theme_params)
     unless service_result.successful?
       @theme = service_result.result
       respond_to do |f|
@@ -23,14 +25,16 @@ class ThemesController < ApplicationController
   end
 
   def edit
-    @theme = Theme.find(params[:id])
+    # @theme = Theme.find(params[:id])
+    @theme = themes_repo.find(params[:id])
     respond_to do |f|
       f.js
     end
   end
 
   def update
-    service_result = UpdateThemeService.new(strong_theme_params).call
+    # service_result = UpdateThemeService.new(strong_theme_params).call
+    service_result = themes_repo.update(strong_theme_params)
     unless service_result.successful?
       @theme = service_result.result
       respond_to do |f|
@@ -49,7 +53,8 @@ class ThemesController < ApplicationController
   end
 
   def destroy
-    DeleteThemeService.new(params).call
+    # DeleteThemeService.new(params).call
+    themes_repo.destroy(params[:id])
     redirect_to dashboard_path
   end
 
@@ -72,5 +77,9 @@ class ThemesController < ApplicationController
 
   def strong_theme_params
     params.require(:theme).permit(:id, :name, :group_id, :hashtag)
+  end
+
+  def themes_repo
+    @repo ||= ThemeRepository.new
   end
 end
