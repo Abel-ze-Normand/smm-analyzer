@@ -25,6 +25,9 @@ RSpec.describe Vk::ParsePostsService do
         },
         "views" => {
           "count" => 5
+        },
+        "comments" => {
+          "count" => 6
         }
       },
       {
@@ -47,6 +50,9 @@ RSpec.describe Vk::ParsePostsService do
         },
         "views" => {
           "count" => 7
+        },
+        "comments" => {
+          "count" => 4
         }
       }
     ]

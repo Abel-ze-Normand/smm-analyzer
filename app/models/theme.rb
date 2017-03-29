@@ -22,7 +22,9 @@ class Theme < ApplicationRecord
       mean_reposts: stat_mean_reposts,
       var_reposts: stat_var_reposts,
       mean_views: stat_mean_views,
-      var_views: stat_var_views
+      var_views: stat_var_views,
+      mean_comments_count: stat_mean_comments_count,
+      var_comments_count: stat_var_comments_count
     }
   end
 
@@ -38,7 +40,14 @@ class Theme < ApplicationRecord
     stat_mean_reposts - Math.sqrt(stat_var_views)
   end
 
+  def stats_comments_count_converged
+    stat_mean_comments_count - Math.sqrt(stat_var_comments_count)
+  end
+
   def stats_accumulated
-    stats_likes_converged + 1.5 * stats_reposts_converged + 0.1 * stats_views_converged
+    stats_likes_converged +
+      1.5 * stats_reposts_converged +
+      0.1 * stats_views_converged +
+      0.7 * stats_comments_count_converged
   end
 end

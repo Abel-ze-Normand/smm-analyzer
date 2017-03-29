@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324152329) do
+ActiveRecord::Schema.define(version: 20170329073409) do
 
   create_table "age_clusters", force: :cascade do |t|
     t.integer "from_12_to_18_count",  default: 0
@@ -27,15 +27,16 @@ ActiveRecord::Schema.define(version: 20170324152329) do
 
   create_table "group_posts", force: :cascade do |t|
     t.text     "text"
-    t.integer  "likes_count",   default: 0
+    t.integer  "likes_count",    default: 0
     t.datetime "date"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "theme_id"
     t.integer  "group_stat_id"
     t.integer  "group_id"
-    t.integer  "reposts",       default: 0
-    t.integer  "views",         default: 0
+    t.integer  "reposts",        default: 0
+    t.integer  "views",          default: 0
+    t.integer  "comments_count", default: 0
     t.index ["group_id"], name: "index_group_posts_on_group_id"
     t.index ["group_stat_id"], name: "index_group_posts_on_group_stat_id"
     t.index ["theme_id"], name: "index_group_posts_on_theme_id"
@@ -67,17 +68,19 @@ ActiveRecord::Schema.define(version: 20170324152329) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "group_id"
     t.string   "hashtag"
-    t.float    "stat_mean_likes",        default: 0.0
-    t.float    "stat_var_likes",         default: 0.0
-    t.float    "stat_mean_reposts",      default: 0.0
-    t.float    "stat_var_reposts",       default: 0.0
-    t.float    "stat_mean_views",        default: 0.0
-    t.float    "stat_var_views",         default: 0.0
+    t.float    "stat_mean_likes",          default: 0.0
+    t.float    "stat_var_likes",           default: 0.0
+    t.float    "stat_mean_reposts",        default: 0.0
+    t.float    "stat_var_reposts",         default: 0.0
+    t.float    "stat_mean_views",          default: 0.0
+    t.float    "stat_var_views",           default: 0.0
     t.datetime "last_refresh_timestamp"
+    t.float    "stat_mean_comments_count", default: 0.0
+    t.float    "stat_var_comments_count",  default: 0.0
     t.index ["group_id"], name: "index_themes_on_group_id"
   end
 

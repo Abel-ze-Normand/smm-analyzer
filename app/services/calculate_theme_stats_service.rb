@@ -12,6 +12,8 @@ class CalculateThemeStatsService
     calc_var_reposts
     calc_mean_views
     calc_var_views
+    calc_mean_comments_count
+    calc_var_comments_count
     @theme.update_attributes(last_refresh_timestamp: DateTime.now)
     @theme.save!
   end
@@ -23,6 +25,7 @@ class CalculateThemeStatsService
     @likes = @posts.pluck(:likes_count)
     @reposts = @posts.pluck(:reposts)
     @views = @posts.pluck(:views)
+    @comments_count = @posts.pluck(:comments_count)
   end
 
   def calc_mean_likes
@@ -47,5 +50,13 @@ class CalculateThemeStatsService
 
   def calc_var_views
     @theme.stat_var_views = variance(@views)
+  end
+
+  def calc_mean_comments_count
+    @theme.stat_mean_comments_count = mean(@comments_count)
+  end
+
+  def calc_var_comments_count
+    @theme.stat_var_comments_count = variance(@comments_count)
   end
 end
