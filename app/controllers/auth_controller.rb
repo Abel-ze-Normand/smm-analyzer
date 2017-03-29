@@ -3,9 +3,9 @@ class AuthController < ApplicationController
   # layout "login", only: [:login, :logout]
   layout "", only: [:auth]
   def login
-    redirect_to dashboard_path and return if user_logged?
-    @auth_path = Vk::PreAuthenticatorService.new.call
-    render layout: "login"
+    # redirect_to dashboard_path and return if user_logged?
+    redirect_to Vk::PreAuthenticatorService.new.call and return
+    # render layout: "login"
   end
 
   def auth
@@ -22,7 +22,7 @@ class AuthController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:access_token] = nil
-    redirect_to login_path
+    redirect_to root_path
   end
 
   private
