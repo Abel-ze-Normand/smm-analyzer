@@ -1,6 +1,6 @@
 module ApplicationRepository
   extend Forwardable
-  defdelegators :@@entity, *methods
+  def_delegators :@@entity, *methods
 
   class << self
     def entity(cls)
