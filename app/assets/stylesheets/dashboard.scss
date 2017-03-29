@@ -2,51 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .test{
-	height: 1900px;
-	width: 100%;
-	background-color: #ff22ff;
+    height: 1900px;
+    width: 100%;
+    background-color: #ff22ff;
 }
 
 .tab-groups{
-	background-color: white;
-	padding: 10px 25px;
-	border: 1px solid #ddd;
-	border-top: 0;
-	min-height: 300px;
-	& .group-info-elem{
-		border: 10px solid white;// грязный хак
-		padding: 10px;
-		&.group-settings{
-			background-color: #ececec;
-		}
-		&.group-info{
-			background-color: #ececec;
-			box-sizing: border-box;
-		}
-		&.group-statistic{
-			background-color: #f26767;
-		}
-		&.group-result{
-			background-color: #67acf2;
-		}
+    background-color: white;
+    padding: 10px 25px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    min-height: 300px;
+    & .group-info-elem{
+	border: 10px solid white;// грязный хак
+	padding: 10px;
+	&.group-settings{
+	    background-color: #ececec;
 	}
+	&.group-info{
+	    background-color: #ececec;
+	    box-sizing: border-box;
+	}
+	&.group-statistic{
+	    //background-color: #f26767;
+	}
+	&.group-result{
+	    //background-color: #67acf2;
+	}
+    }
 }
 
 .graphics-view{
-	width: 100%;
-	overflow: scroll;
+    width: 100%;
+    // overflow: scroll;
 }
 
 /*D3
-*/
+ */
 .bar {
-  fill: black;
+    fill: black;
 }
 
 .bar:hover {
-  fill: white ;
+    fill: white ;
 }
 
 .axis--x path {
-  display: none;
+    display: none;
 }

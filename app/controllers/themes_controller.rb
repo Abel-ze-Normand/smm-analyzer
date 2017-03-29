@@ -71,6 +71,9 @@ class ThemesController < ApplicationController
       group_id: params[:group_id],
       user_id: @current_user.id
     ).call
+    respond_to do |f|
+      f.js
+    end
   end
 
   private
