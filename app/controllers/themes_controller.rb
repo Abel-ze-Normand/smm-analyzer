@@ -60,8 +60,7 @@ class ThemesController < ApplicationController
 
   def analyze_popular
     StartPopularThemesAnalyzerService.new(
-      group_id: params[:group_id],
-      user_id: @current_user.id
+      group_id: params[:group_id]
     ).call
     redirect_to dashboard_path
   end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/auth", to: "auth#auth", as: :auth
   get "/fix_auth", to: "auth#fix_auth", as: :fix_auth
   get "/dashboard", to: "dashboard#index", as: :dashboard
+  get "/init", to: "dashboard#initialize_all", as: :initialize_all
   # get "/dashboard/search_groups", to: "dashboard#groups_list", as: :groups_list
   get "/logout", to: "auth#logout", as: :logout
   get "/load_stats", to: "stats#load_stats", as: :load_stats

@@ -63,17 +63,14 @@
 	      </div>
 	      <%= render partial: "themes/list", locals: { group: group } %>
 	      <div class="form-group">
-                <div class="col-sm-4">
-                  <%= link_to "Инициализация постов", load_posts_path(group_id: group.id), class: dashboard_posts_job_status_class(group) %>
-                </div>
-                <div class="col-sm-4">
-                  <%= link_to "Инициализация стат.", load_stats_path(group_id: group.id), class: dashboard_stats_job_status_class(group) %>
-                </div>
-                <div class="col-sm-4">
-                  <%= link_to "Сканировать", themes_analyze_popular_path(group_id: group.id), class: "btn btn-info btn-sm" %>
-                </div>
                 <div class="col-sm-12">
-                  <%= link_to "RESULTS", themes_popular_path(group_id: group.id), class: "btn btn-success btn-sm" %>
+                  <%= link_to "Стартовать полную загрузку данных с VK", initialize_all_path(group_id: group.id), class: dashboard_initialize_all_class(group) %>
+                </div>
+                <div class="col-sm-6">
+                  <%= link_to "Обновить базу постов", load_posts_path(group_id: group.id), class: dashboard_posts_job_status_class(group) %>
+                </div>
+                <div class="col-sm-6">
+                  <%= link_to "Обновить базу стат.", load_stats_path(group_id: group.id), class: dashboard_stats_job_status_class(group) %>
                 </div>
 	      </div>
 	    </div>
@@ -86,7 +83,8 @@
 	  <div class="graphics-view" id="total-theme-popularity">
 	    <!--Добавить grup.id-->
 	    <!--  <svg id="statistic" class="statistic-demo" width="800" height="300"></svg> -->
-            <%= button_to themes_popular_path(group_id: group.id), remote: true, method: "get", class: "btn btn-success center-block" do %>
+            <%= link_to "Сканировать", themes_analyze_popular_path(group_id: group.id), class: "btn btn-info center-block" %>
+            <%= link_to themes_popular_path(group_id: group.id), remote: true, method: "get", class: "btn btn-success center-block" do %>
               Show popular themes
             <% end %>
 	  </div>

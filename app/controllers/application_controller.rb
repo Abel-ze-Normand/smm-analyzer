@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from VK::APIError, with: :handle_vk_api_error
-  rescue_from ActiveRecord::RecordNotFound, with: :handle_ar_rec_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :handle_ar_rec_not_found
 
   def user_logged?
     !session[:user_id].nil?
