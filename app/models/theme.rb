@@ -39,6 +39,6 @@ class Theme < ApplicationRecord
   end
 
   def stats_accumulated
-    stats_likes_converged + 1.5 * stats_reposts_converged + 0.5 * stats_views_converged
+    stats_likes_converged + 1.5 * stats_reposts_converged + 0.1 * stats_views_converged
   end
 end
