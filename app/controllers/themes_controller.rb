@@ -59,9 +59,7 @@ class ThemesController < ApplicationController
   end
 
   def analyze_popular
-    StartPopularThemesAnalyzerService.new(
-      group_id: params[:group_id]
-    ).call
+    StartPopularThemesAnalyzerService.new(group_id: params[:group_id]).call
     redirect_to dashboard_path
   end
 
@@ -70,6 +68,17 @@ class ThemesController < ApplicationController
       group_id: params[:group_id],
       user_id: @current_user.id
     ).call
+    respond_to do |f|
+      f.js
+    end
+  end
+
+  def show_target_audience
+    @theme = themes_repo.find(params[:theme_id])
+  end
+
+  def get_target_audience
+    @target_audience_data = GetTargetAudienceService.new(theme_id: params[:theme_id]).call
     respond_to do |f|
       f.js
     end

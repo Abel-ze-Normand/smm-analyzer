@@ -1,0 +1,12 @@
+<h2>Audience statistics</h2>
+<div id="audience-statistics-chart" class="col-sm-12">
+  <div class="center-block">Loading...</div>
+</div>
+<script type="text/javascript">
+ $(function () {
+   'use strict';
+   $.ajax({
+     url: "<%= themes_get_target_audience_path(theme_id: @theme.id) %>",
+   }).fail(function( xhr, status, errorThrown ) {});
+ });
+</script>

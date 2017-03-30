@@ -21,4 +21,8 @@ module ThemesHelper
       }
     )
   end
+
+  def render_audience_chart(target_audience_data)
+    pie_chart(target_audience_data[:audience])
+  end
 end

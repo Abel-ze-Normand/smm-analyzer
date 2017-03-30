@@ -12,8 +12,18 @@ Rails.application.routes.draw do
   get "/logout", to: "auth#logout", as: :logout
   get "/load_stats", to: "stats#load_stats", as: :load_stats
   get "/load_posts", to: "posts#load_posts", as: :load_posts
-  get "/themes/analyze_popular", to: "themes#analyze_popular", as: :themes_analyze_popular
-  get "/themes/popular", to: "themes#popular", as: :themes_popular
+
+  scope path: "themes", as: "themes" do
+    controller "themes" do
+      get "analyze_popular", to: "analyze_popular", as: :analyze_popular
+      get "popular", to: "popular", as: :popular
+      get "show_target_audience", to: "show_target_audience", as: :show_target_audience
+      get "get_target_audience", to: "get_target_audience", as: :get_target_audience
+    end
+  end
+
+  # get "/themes/analyze_popular", to: "themes#analyze_popular", as: :themes_analyze_popular
+  # get "/themes/popular", to: "themes#popular", as: :themes_popular
 
   resources :groups, only: [:create, :show, :destroy, :update] do
     resources :stats, only: [:index]
