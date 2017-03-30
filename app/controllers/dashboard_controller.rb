@@ -18,7 +18,8 @@ class DashboardController < ApplicationController
       group_id: params[:group_id],
       access_token: session[:access_token],
       date_from: "1970-01-01",
-      date_to: "2018-01-01"
+      date_to: "2018-01-01",
+      undefined_theme_fallback: :create_new
     ).call
     redirect_to dashboard_path
   end

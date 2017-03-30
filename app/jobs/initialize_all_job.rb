@@ -5,6 +5,10 @@ class InitializeAllJob
     options = options.symbolize_keys
     group_id = options.fetch(:group_id)
 
+    Theme.destroy_all
+    GroupPost.destroy_all
+    GroupStat.destroy_all
+
     load_posts(group_id, options)
     load_stats(group_id, options)
     analyze_popular_themes(group_id, options)
@@ -47,7 +51,7 @@ class InitializeAllJob
       Theme.where(group_id: group_id).each { |t| CalculateThemeStatsService.new(theme: t).call }
     end
     popular_themes = GetPopularThemesService.new(group_id: group_id, criteria: criteria).call
-    CachePopularThemesService.new(user_id: group.user_id, group_id: group_id, themes: popular_themes).call
+    CachePopularThemesService.new(user_id: Group.find(group_id).user_id, group_id: group_id, themes: popular_themes).call
   end
 
   def self.unlock_group_posts(group_id)

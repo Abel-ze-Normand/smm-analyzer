@@ -9,6 +9,6 @@ class PopularThemesJob
       Theme.where(group_id: group_id).each { |t| CalculateThemeStatsService.new(theme: t).call }
     end
     popular_themes = GetPopularThemesService.new(group_id: group_id, criteria: criteria).call
-    CachePopularThemesService.new(user_id: group.user_id, group_id: group_id, themes: popular_themes).call
+    CachePopularThemesService.new(user_id: Group.find(group_id).user_id, group_id: group_id, themes: popular_themes).call
   end
 end

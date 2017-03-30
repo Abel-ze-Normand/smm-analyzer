@@ -8,7 +8,7 @@ module Vk
       # domain values:
       #   :no_create - if theme not found, then do not create one
       #   :create_new - if theme not found, then new theme will be generated
-      @undefined_theme_fallback = options.fetch(:undefined_theme_fallback, :no_create)
+      @undefined_theme_fallback = options.fetch(:undefined_theme_fallback, :no_create).to_s
     end
 
     def call
@@ -22,7 +22,7 @@ module Vk
     def analyze(post)
       hashtags = post.text.scan(HASHTAG_REGEX)
       # for now save only first
-      post.theme = find_theme(hashtags.first)
+      post.theme = find_theme(hashtags.first) if hashtags.present?
       post.save!
       post
     end
@@ -32,10 +32,10 @@ module Vk
       return t if t
 
       case @undefined_theme_fallback
-      when :no_create
+      when "no_create"
         t
-      when :create_new
-        Theme.create!(name: hashtag, hashtag: hashtag)
+      when "create_new"
+        Theme.create!(name: hashtag, hashtag: hashtag, group_id: @group_id)
       else
         raise :not_supported_undefined_theme_fallback
       end
