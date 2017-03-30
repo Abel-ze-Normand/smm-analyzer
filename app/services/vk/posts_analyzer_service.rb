@@ -35,9 +35,7 @@ module Vk
       when :no_create
         t
       when :create_new
-        t = Theme.new(name: hashtag, hashtag: hashtag)
-        t.save!
-        t
+        Theme.create!(name: hashtag, hashtag: hashtag)
       else
         raise :not_supported_undefined_theme_fallback
       end
