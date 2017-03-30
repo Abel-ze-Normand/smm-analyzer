@@ -5,6 +5,6 @@ class RetrieveCachedPopularThemesService
   end
 
   def call
-    JSON.parse($redis.get("popular-themes-#{@user_id}-#{@group_id}") || "{}")
+    CacheService.get("popular-themes-#{@user_id}-#{@group_id}")
   end
 end

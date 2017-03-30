@@ -5,6 +5,9 @@ class GetTargetAudienceService
   end
 
   def call
+    cached_val = CacheService.get("target-audience-#{@theme_id}")
+    return cached_val if cached_val
+
     average_target_audience_amount, =
       GroupStat
       .joins(:group_posts)
@@ -24,7 +27,11 @@ class GetTargetAudienceService
     top_audience = names_with_avg_amount.each_pair
                                         .max { |a, b| a.last <=> b.last }
 
-    { audience: names_with_avg_amount, top_audience: top_audience }
+    res = { audience: names_with_avg_amount, top_audience: top_audience }
+
+    CacheService.set("target-audience-#{@theme_id}", res)
+
+    res
   end
 
   private

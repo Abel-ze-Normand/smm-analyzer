@@ -6,8 +6,6 @@ class CachePopularThemesService
   end
 
   def call
-    key = "popular-themes-#{@user_id}-#{@group_id}"
-    $redis.set(key, @themes.to_json)
-    $redis.expire(key, 24.hours)
+    CacheService.set("popular-themes-#{@user_id}-#{@group_id}", @themes.to_json, 24.hours)
   end
 end
